@@ -5,6 +5,7 @@ export interface IUser {
   image: string;
   password: string;
   role: "customer" | "provider" | "admin";
+  isActive?: boolean;
   iat?: number;
   exp?: number;
 }

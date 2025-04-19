@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import "./globals.css";
+import Providers from "@/providers/Providers";
+import { Toaster } from "sonner";
 
 const lato = Lato({
   weight: ['100', '300' , '400', '700', '900'],
@@ -23,7 +25,10 @@ export default function RootLayout({
       <body
         className={`${lato.className} antialiased`}
       >
-        {children}
+        <Providers>
+          <Toaster richColors position="top-center" />
+          {children}
+        </Providers>
       </body>
     </html>
   );

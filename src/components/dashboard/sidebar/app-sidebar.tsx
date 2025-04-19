@@ -23,9 +23,12 @@ import {
 } from "@/components/ui/sidebar";
 // import { NavUser } from "./nav-user";
 import Link from "next/link";
-import Logo from "@/assets/Logo.png";
+import Logo from "@/assets/Logo(01).png";
 import Image from "next/image";
 import { NavMain } from "./nav-main";
+import { useUser } from "@/context/UserContext";
+import { NavUser } from "./nav-user";
+import { IUser } from "@/types";
 
 const data = {
   navAdmin: [
@@ -36,19 +39,14 @@ const data = {
       isActive: true,
     },
     {
-      title: "User",
-      url: "/admin/user",
+      title: "Manage Users",
+      url: "/admin/manage-users",
       icon: SquareTerminal,
-      items: [
-        {
-          title: "Manage Users",
-          url: "admin/user/manage-user",
-        },
-        {
-          title: "Provider Requests",
-          url: "admin/user/provider-requests",
-        },
-      ],
+    },
+    {
+      title: "Provider Requests",
+      url: "/admin/provider-requests",
+      icon: SquareTerminal,
     },
   ],
   navProvider: [
@@ -59,8 +57,13 @@ const data = {
       isActive: true,
     },
     {
-      title: "Create Meals",
-      url: "/provider/create-meals",
+      title: "Create Meal",
+      url: "/provider/create-meal",
+      icon: SquareTerminal,
+    },
+    {
+      title: "Create Meal Plan",
+      url: "/provider/create-meal-plan",
       icon: SquareTerminal,
     },
     {
@@ -69,9 +72,9 @@ const data = {
       icon: SquareTerminal,
     },
     {
-      title: "Manage Menus",
+      title: "Manage Meal Plan",
       url: "/provider/shop/manage-menus",
-      icon: Bot,
+      icon: SquareTerminal,
     },
   ],
   navCustomer: [
@@ -93,10 +96,12 @@ const data = {
     },
   ],
 };
-
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
+  currentUserData: IUser
+}
+export function AppSidebar({currentUserData,  ...props }: AppSidebarProps) {
 // get user role from cookies 
-  const user = "provider";
+  const {user, setIsLoading} = useUser();
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -119,17 +124,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {/* <p>Main Nav Item</p> */}
         <NavMain
           items={
-            user === "admin"
+            user?.role === "admin"
               ? data.navAdmin
-              : user === "provider"
+              : user?.role === "provider"
               ? data.navProvider
               : data.navCustomer
           }
         />
       </SidebarContent>
       <SidebarFooter>
-        {/* <NavUser /> */}
-        <p>User Nav Items</p>
+        <NavUser currentUserData={currentUserData}/>
       </SidebarFooter>
     </Sidebar>
   );

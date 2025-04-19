@@ -1,57 +1,68 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
+
+
 import { useUser } from "@/context/UserContext";
 import { loginUser } from "@/services/Auth";
 import { toast } from "sonner";
-import Logo from "@/assets/Logo.png"
+import Logo from "@/assets/Logo.png";
 import { useRouter, useSearchParams } from "next/navigation";
-import { FieldValues, Form, SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Image from "next/image";
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function LoginForm() {
-    const form = useForm();
-    const {setIsLoading} = useUser();
-    const searchParams = useSearchParams();
-    const redirect = searchParams.get('redirectPath');
-    const router = useRouter();
+  const form = useForm();
+  const { setIsLoading } = useUser();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirectPath");
+  const router = useRouter();
 
-    const {formState: {isSubmitting}} = form;
+  const {
+    formState: { isSubmitting },
+  } = form;
 
-
-    const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-        try{
-            const res = await loginUser(data);
-            setIsLoading(true);
-            if(res?.success){
-                toast.success(res?.message);
-                if(redirect){
-                    router.push(redirect);
-                }else{
-                    router.push('/')
-                }
-            }else{
-                toast.error(res?.message);
-            }
-        }catch(error: any){
-            console.log(error)
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    // console.log(data)
+    try {
+      const res = await loginUser(data);
+      setIsLoading(true);
+      if (res?.success) {
+        toast.success(res?.message);
+        router.refresh();
+        if (redirect) {
+          router.push(redirect);
+        } else {
+          router.push("/");
         }
+      } else {
+        toast.error(res?.message);
+      }
+    } catch (error: any) {
+      console.log(error);
     }
+  };
 
-
-    return (
-        <div className="border-2 border-gray-300 rounded-xl flex-grow max-w-md w-full p-5">
+  return (
+    <div className="border-2 border-gray-300 rounded-xl flex-grow max-w-md w-full p-5">
       <div className="flex items-center space-x-4 ">
-        <Image src={Logo} height={30} width={30} alt="logo"/>
+        <Image src={Logo} height={30} width={30} alt="logo" />
         <div>
           <h1 className="text-xl font-semibold">Login</h1>
           <p className="font-extralight text-sm text-gray-600">Welcome back!</p>
         </div>
       </div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
           <FormField
             control={form.control}
             name="email"
@@ -79,10 +90,7 @@ export default function LoginForm() {
             )}
           />
 
-          <Button
-            type="submit"
-            className="mt-5 w-full"
-          >
+          <Button type="submit" className="mt-5 w-full">
             {isSubmitting ? "Logging...." : "Login"}
           </Button>
         </form>
@@ -94,5 +102,5 @@ export default function LoginForm() {
         </Link>
       </p>
     </div>
-    )
+  );
 }

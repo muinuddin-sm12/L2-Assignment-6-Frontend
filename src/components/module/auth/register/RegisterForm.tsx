@@ -63,11 +63,11 @@ const RegisterForm = () => {
   };
   return (
     <div className="border-2 border-gray-300 rounded-xl flex-grow max-w-md w-full p-5">
-      <div className="flex items-center space-x-4 ">
+      <div className="flex items-center space-x-4 mb-6">
         <Image src={Logo} height={30} width={30} alt="logo" />
         <div>
           <h1 className="text-xl font-semibold">Register</h1>
-          <p className="font-extralight text-sm text-gray-600">
+          <p className="font-light text-sm text-gray-600">
             Join us today and start your journey!
           </p>
         </div>
@@ -152,7 +152,7 @@ const RegisterForm = () => {
           <Button
             disabled={passwordConfirm && password !== passwordConfirm}
             type="submit"
-            className="mt-5 w-full"
+            className="mt-5 w-full bg-[#4CAF50] hover:bg-[#4bce4f]"
           >
             {isSubmitting ? (
               <ImSpinner3 className="animate-spin text-center text-lg flex items-center justify-center" />
@@ -163,8 +163,8 @@ const RegisterForm = () => {
         </form>
       </Form>
       <p className="text-sm text-gray-600 text-center my-3">
-        Already have an account ?
-        <Link href="/login" className="text-primary">
+        Already have an account ?{" "}
+        <Link href="/login" className="text-[#ebd401] font-[600] underline">
           Login
         </Link>
       </p>

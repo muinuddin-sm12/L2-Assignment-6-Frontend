@@ -19,6 +19,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { ImSpinner3 } from "react-icons/im";
 
 export default function LoginForm() {
   const form = useForm();
@@ -54,11 +55,11 @@ export default function LoginForm() {
 
   return (
     <div className="border-2 border-gray-300 rounded-xl flex-grow max-w-md w-full p-5">
-      <div className="flex items-center space-x-4 ">
+      <div className="flex items-center space-x-4 mb-6">
         <Image src={Logo} height={30} width={30} alt="logo" />
         <div>
           <h1 className="text-xl font-semibold">Login</h1>
-          <p className="font-extralight text-sm text-gray-600">Welcome back!</p>
+          <p className="font-light text-sm text-gray-600">Welcome back!</p>
         </div>
       </div>
       <Form {...form}>
@@ -90,14 +91,18 @@ export default function LoginForm() {
             )}
           />
 
-          <Button type="submit" className="mt-5 w-full">
-            {isSubmitting ? "Logging...." : "Login"}
+          <Button type="submit" className="mt-5 w-full bg-[#4CAF50] hover:bg-[#4bce4f]">
+          {isSubmitting ? (
+              <ImSpinner3 className="animate-spin text-center text-lg flex items-center justify-center" />
+            ) : (
+              "Login"
+            )}
           </Button>
         </form>
       </Form>
       <p className="text-sm text-gray-600 text-center my-3">
-        Do not have any account ?
-        <Link href="/register" className="text-primary">
+        Do not have any account ?{" "}
+        <Link href="/register" className="text-[#ebd401] font-[600] underline">
           Register
         </Link>
       </p>

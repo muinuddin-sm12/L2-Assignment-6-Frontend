@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import Logo from "@/assets/Logo.png";
 import { Button } from "@/components/ui/button";
 import { ImSpinner3 } from "react-icons/im";
 
@@ -13,18 +13,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-// import { registerValidation } from "./registerValidation";
-// import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import Image from "next/image";
-import ImagePreviewer from "@/components/ui/core/MImageUploader/ImagePreviewer";
-import MImageUploader from "@/components/ui/core/MImageUploader";
-import { useState } from "react";
-import { registerUser } from "@/services/Auth";
-import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
+import { createMealPlan } from "@/services/mealPlan";
+import { IProvier } from "@/types";
 
 const days = [
   "SunDay",
@@ -37,8 +30,8 @@ const days = [
 ];
 const meals = ["breakfast", "lunch", "dinner"];
 
-const CreateMealPlanForm = () => {
-  const router = useRouter();
+const CreateMealPlanForm = ({providerData}: {providerData: IProvier}) => {
+  // const router = useRouter();
 
   const form = useForm();
   //   {
@@ -50,30 +43,29 @@ const CreateMealPlanForm = () => {
   } = form;
 
   const scheduleType = form.watch("scheduleType");
-  // console.log(scheduleType);
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    // console.log(data);
-    // try {
-    //   const formData = new FormData();
-    //   formData.append("data", JSON.stringify(data));
-    //   formData.append("image", imageFiles[0]);
-
-    //   console.log(formData);
-    // const res = await registerUser(formData);
-    // console.log(res);
-    // if (res?.success) {
-    //     router.refresh();
-    //   toast.success(res?.message);
-    //   router.push("/");
-    // } else {
-    //   toast.error(res?.message);
-    // }
-    // } catch (error) {
-    //   toast.error(error);
-    // }
+    console.log(data);
+    try {
+      const newData = {
+        ...data,
+        pricePerDay: parseFloat(data?.pricePerDay),
+        providerId: providerData?._id
+      }
+      console.log('new data',newData);
+      const res = await createMealPlan(newData);
+      if (res?.success) {
+        // router.refresh();
+        toast.success(res?.message);
+        // router.push("/");
+      } else {
+        toast.error(res?.message);
+      }
+    } catch (err:any) {
+      toast.error(err.message);
+    }
   };
   return (
-    <div className="border-l flex-grow max-w-lg w-full p-5">
+    <div className="border border-gray-300 flex-grow max-w-lg w-full p-5">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
           <FormField
@@ -199,9 +191,12 @@ const CreateMealPlanForm = () => {
             </>
           )}
 
-          <Button type="submit" className="mt-5 w-full">
+          <Button
+            type="submit"
+            className="mt-5 w-full  bg-[#4CAF50] hover:bg-[#4bce4f]"
+          >
             {isSubmitting ? (
-              <ImSpinner3 className="animate-spin text-center text-lg flex items-center justify-center" />
+              <ImSpinner3 className="animate-spin text-center text-white text-lg flex items-center justify-center" />
             ) : (
               "Create Meal Plan"
             )}

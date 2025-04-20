@@ -2,14 +2,15 @@
 
 import * as React from "react";
 import {
-  Bot,
-  //   Frame,
-  //   LifeBuoy,
-  //   Map,
-  //   PieChart,
-  //   Send,
-  //   Settings,
-  SquareTerminal,
+  ClipboardPlus,
+  PackageCheck,
+  ClipboardList,
+  Utensils,
+  Users,
+  Inbox,
+  ChefHat,
+  Package,
+  LayoutDashboard,
 } from "lucide-react";
 
 import {
@@ -35,64 +36,64 @@ const data = {
     {
       title: "Dashboard",
       url: "/admin/dashboard",
-      icon: SquareTerminal,
+      icon: LayoutDashboard,
       isActive: true,
     },
     {
       title: "Manage Users",
       url: "/admin/manage-users",
-      icon: SquareTerminal,
+      icon: Users,
     },
     {
       title: "Provider Requests",
       url: "/admin/provider-requests",
-      icon: SquareTerminal,
+      icon: Inbox,
     },
   ],
   navProvider: [
     {
       title: "Dashboard",
       url: "/provider/dashboard",
-      icon: SquareTerminal,
+      icon: LayoutDashboard,
       isActive: true,
     },
     {
       title: "Create Meal",
       url: "/provider/create-meal",
-      icon: SquareTerminal,
+      icon: Utensils,
     },
     {
       title: "Create Meal Plan",
       url: "/provider/create-meal-plan",
-      icon: SquareTerminal,
+      icon: ClipboardPlus,
     },
     {
       title: "Manage Orders",
-      url: "/provider/orders",
-      icon: SquareTerminal,
+      url: "/provider/manage-orders",
+      icon: PackageCheck,
     },
     {
       title: "Manage Meal Plan",
       url: "/provider/shop/manage-menus",
-      icon: SquareTerminal,
+      icon: ClipboardList,
     },
   ],
   navCustomer: [
     {
       title: "Dashboard",
       url: "/customer/dashboard",
-      icon: SquareTerminal,
+      icon: LayoutDashboard,
       isActive: true,
     },
     {
       title: "Become a Provider",
       url: "/customer/become-provider",
-      icon: Bot,
+      icon: ChefHat,
     },
     {
       title: "My Orders",
-      url: "/user/order",
-      icon: Bot,
+      url: "/customer/orders",
+      icon: Package,
     },
   ],
 };
@@ -101,7 +102,7 @@ interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
 }
 export function AppSidebar({currentUserData,  ...props }: AppSidebarProps) {
 // get user role from cookies 
-  const {user, setIsLoading} = useUser();
+  const {user} = useUser();
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -113,7 +114,7 @@ export function AppSidebar({currentUserData,  ...props }: AppSidebarProps) {
                   <Image src={Logo} alt="Logo" height={30} width={30} />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <h2 className="font-bold text-xl">NextMart</h2>
+                  <h2 className="font-bold text-xl">MealCraft</h2>
                 </div>
               </Link>
             </SidebarMenuButton>

@@ -23,7 +23,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
 import { IProvier } from "@/types";
-// import { createMeal } from "@/services/Meal";
+import { createMeal } from "@/services/Meal";
 // import { useUser } from "@/context/UserContext";
 // import { getALLUser } from "@/services/User";
 // import { getALLProvider } from "@/services/Provider";
@@ -42,12 +42,6 @@ const CreateMealForm = ({providerData}:{providerData: IProvier}) => {
     formState: { isSubmitting },
   } = form;
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    // console.log(data)
-    // const allUser = await getALLUser();
-    // const currentUser = allUser.data.find((u: any) => u?.email === user?.email)
-    // const providers = await getALLProvider();
-    // const currentProvider = providers.data.find((p: any) => p?.userId === currentUser?._id)
-    // console.log(currentProvider)
     const ingredients = data?.ingredients.split(',').map((item:string) => item.trim()).filter((item: string) => item.length>0);
     const dietaryTags = data?.dietaryTags.split(',').map((item:string) => item.trim()).filter((item: string) => item.length>0);
     const price = parseFloat(data?.price)
@@ -59,24 +53,23 @@ const CreateMealForm = ({providerData}:{providerData: IProvier}) => {
       providerId: providerData?._id,
     }
     console.log(fullFormData)
-    // try {
-    //   const formData = new FormData();
-    //   formData.append("data", JSON.stringify(fullFormData));
-    //   formData.append("image", imageFiles[0]);
-    //   const res = await createMeal(formData);
-    //   if (res?.success) {
-    //       // router.refresh();
-    //     toast.success(res?.message);
-    //     router.push("/find-meals");
-    //   } else {
-    //     toast.error(res?.message);
-    //   }
-    // } catch (error: any) {
-    //   toast.error(error);
-    // }
+    try {
+      const formData = new FormData();
+      formData.append("data", JSON.stringify(fullFormData));
+      formData.append("image", imageFiles[0]);
+      const res = await createMeal(formData);
+      if (res?.success) {
+        toast.success(res?.message);
+        router.push("/find-meals");
+      } else {
+        toast.error(res?.message);
+      }
+    } catch (error: any) {
+      toast.error(error);
+    }
   };
   return (
-    <div className="border-2 border-gray-300 rounded-xl flex-grow max-w-md w-full p-5">
+    <div className="border border-gray-300 rounded-xl flex-grow max-w-md w-full p-5">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
           <FormField
@@ -191,9 +184,9 @@ const CreateMealForm = ({providerData}:{providerData: IProvier}) => {
             )}
           />
 
-          <Button type="submit" className="mt-5 w-full">
+          <Button type="submit" className="mt-5 w-full bg-[#4CAF50] hover:bg-[#4bce4f]">
             {isSubmitting ? (
-              <ImSpinner3 className="animate-spin text-center text-lg flex items-center justify-center" />
+              <ImSpinner3 className="animate-spin text-center text-white text-lg flex items-center justify-center" />
             ) : (
               "Post Meal"
             )}

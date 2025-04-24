@@ -18,22 +18,26 @@ import { toast } from "sonner";
 import { Textarea } from "@/components/ui/textarea";
 import { createMealPlan } from "@/services/mealPlan";
 import { IProvier } from "@/types";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createMealPlanValidationShcema } from "./createMealPlanValidation";
 
 const days = [
-  "SunDay",
-  "Monday",
-  "TuesDay",
-  "WednesDay",
-  "Thursday",
-  "Friday",
-  "Saturday",
+  "sunday",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
 ];
 const meals = ["breakfast", "lunch", "dinner"];
 
-const CreateMealPlanForm = ({providerData}: {providerData: IProvier}) => {
+const CreateMealPlanForm = ({ providerData }: { providerData: IProvier }) => {
   // const router = useRouter();
 
-  const form = useForm();
+  const form = useForm<FieldValues>({
+    resolver: zodResolver(createMealPlanValidationShcema)
+  });
   //   {
   // resolver: zodResolver(registerValidation),
   //   }
@@ -44,28 +48,31 @@ const CreateMealPlanForm = ({providerData}: {providerData: IProvier}) => {
 
   const scheduleType = form.watch("scheduleType");
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
+    // console.log(data);
     try {
       const newData = {
         ...data,
         pricePerDay: parseFloat(data?.pricePerDay),
-        providerId: providerData?._id
-      }
+        providerId: providerData?._id,
+      };
       console.log('new data',newData);
       const res = await createMealPlan(newData);
       if (res?.success) {
-        // router.refresh();
         toast.success(res?.message);
+        form.reset({
+          mealPlanType: "",
+          scheduleType: "",
+        });
         // router.push("/");
       } else {
         toast.error(res?.message);
       }
-    } catch (err:any) {
+    } catch (err: any) {
       toast.error(err.message);
     }
   };
   return (
-    <div className="border border-gray-300 flex-grow max-w-lg w-full p-5">
+    <div className="border rounded-xl border-gray-300 flex-grow max-w-lg w-full p-5">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
           <FormField
@@ -96,7 +103,7 @@ const CreateMealPlanForm = ({providerData}: {providerData: IProvier}) => {
           />
           <FormField
             control={form.control}
-            name="pricePerDay"
+            name="pricePerMeal"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Price per Day</FormLabel>
@@ -167,7 +174,7 @@ const CreateMealPlanForm = ({providerData}: {providerData: IProvier}) => {
                       <FormField
                         key={`${day}.${meal}`}
                         control={form.control}
-                        name={`weeklyMenu.${day}.${meal}`}
+                        name={`menu.${day}.${meal}`}
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>

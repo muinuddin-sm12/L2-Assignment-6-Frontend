@@ -4,7 +4,7 @@ import * as React from "react";
 import {
   ClipboardPlus,
   PackageCheck,
-  ClipboardList,
+  // ClipboardList,
   Utensils,
   Users,
   Inbox,
@@ -72,11 +72,11 @@ const data = {
       url: "/provider/manage-orders",
       icon: PackageCheck,
     },
-    {
-      title: "Manage Meal Plan",
-      url: "/provider/shop/manage-menus",
-      icon: ClipboardList,
-    },
+    // {
+    //   title: "Manage Meal Plan",
+    //   url: "/provider/shop/manage-menus",
+    //   icon: ClipboardList,
+    // },
   ],
   navCustomer: [
     {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import Logo from "@/assets/Logo.png";
@@ -15,8 +16,6 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-// import { registerValidation } from "./registerValidation";
-// import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import Image from "next/image";
 import ImagePreviewer from "@/components/ui/core/MImageUploader/ImagePreviewer";
@@ -24,16 +23,17 @@ import MImageUploader from "@/components/ui/core/MImageUploader";
 import { useState } from "react";
 import { registerUser } from "@/services/Auth";
 import { useRouter } from "next/navigation";
+import { registerValidationSchema } from "./registerValidation";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const RegisterForm = () => {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   const [imagePreview, setImagePreview] = useState<string[] | []>([]);
   const router = useRouter();
 
-  const form = useForm();
-  //   {
-  // resolver: zodResolver(registerValidation),
-  //   }
+  const form = useForm<FieldValues>({
+    resolver: zodResolver(registerValidationSchema)
+  });
 
   const {
     formState: { isSubmitting },
@@ -57,7 +57,7 @@ const RegisterForm = () => {
       } else {
         toast.error(res?.message);
       }
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error);
     }
   };

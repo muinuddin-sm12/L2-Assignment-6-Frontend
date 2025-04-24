@@ -7,7 +7,7 @@ import { cookies } from "next/headers";
 
 export const createOrders = async (data: any) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/meal-plan`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -72,6 +72,19 @@ export const updateOrderStatus = async (
       }
     );
     revalidateTag("ORDERS");
+    return res.json();
+  } catch (error: any) {
+    return Error(error);
+  }
+};
+
+export const verifyPayment = async (orderId: {
+  orderId: string;
+}) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/orders/verify?order_id=${orderId}`
+    );
     return res.json();
   } catch (error: any) {
     return Error(error);

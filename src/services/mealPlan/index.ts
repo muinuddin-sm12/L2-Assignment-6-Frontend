@@ -20,13 +20,22 @@ export const createMealPlan = async (data: any) => {
     return Error(error);
   }
 };
-export const getALlMealsPlans = async () => {
+export const getALlMealsPlans = async (query: string|undefined) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/meal-plan`, {
+    const url = query? `/meal-plan?mealPlanType=${query}` : `/meal-plan`;
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}${url}`, {
       next: {
         tags: ["MEALPLAN"],
       },
     });
+    return res.json();
+  } catch (error: any) {
+    return Error(error);
+  }
+};
+export const getSingleMealsPlans = async (planId: string) => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/meal-plan/${planId}`);
     return res.json();
   } catch (error: any) {
     return Error(error);

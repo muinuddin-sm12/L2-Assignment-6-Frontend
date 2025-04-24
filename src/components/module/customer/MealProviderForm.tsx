@@ -1,9 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-
-import Logo from "@/assets/Logo.png";
 import { Button } from "@/components/ui/button";
 import { ImSpinner3 } from "react-icons/im";
-
 import {
   Form,
   FormControl,
@@ -13,25 +11,26 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-// import { registerValidation } from "./registerValidation";
-// import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import Image from "next/image";
 import ImagePreviewer from "@/components/ui/core/MImageUploader/ImagePreviewer";
 import MImageUploader from "@/components/ui/core/MImageUploader";
 import { useState } from "react";
-import { registerUser } from "@/services/Auth";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
+import { createProvider } from "@/services/Provider";
+import { useUser } from "@/context/UserContext";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { mealProviderFromSchema } from "./mealProviderFormValidation";
 
 const MealProviderForm = () => {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   const [imagePreview, setImagePreview] = useState<string[] | []>([]);
   const router = useRouter();
-
-  const form = useForm();
+  const {user} = useUser();
+  const form = useForm({
+    resolver: zodResolver(mealProviderFromSchema)
+  });
   //   {
   // resolver: zodResolver(registerValidation),
   //   }
@@ -39,36 +38,42 @@ const MealProviderForm = () => {
   const {
     formState: { isSubmitting },
   } = form;
-  const password = form.watch("password");
-  const passwordConfirm = form.watch("passwordConfirm");
-
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const cuisineSpecialties = data?.cuisineSpecialties.split(',').map((item:string) => item.trim()).filter((item: string) => item.length>0);
+    const fullFormData = {
+      ...data,
+      userId: user?._id,
+      cuisineSpecialties,
+    }
+    console.log('...', fullFormData)
     try {
       const formData = new FormData();
-      formData.append("data", JSON.stringify(data));
-      formData.append("image", imageFiles[0]);
+    
+      formData.append("data", JSON.stringify(fullFormData));
+      formData.append("logo", imageFiles[0]);
 
       // console.log(formData);
-      // const res = await registerUser(formData);
-      // console.log(res);
-      // if (res?.success) {
-      //     router.refresh();
-      //   toast.success(res?.message);
-      //   router.push("/");
-      // } else {
-      //   toast.error(res?.message);
-      // }
-    } catch (error) {
+      const res = await createProvider(formData);
+      console.log(res);
+      if (res?.success) {
+        router.refresh();
+        toast.success("Request send successfully");
+        // router.push("/customer/dashboard");
+        form.reset();
+      } else {
+        toast.error(res?.message);
+      }
+    } catch (error: any) {
       toast.error(error);
     }
   };
   return (
-    <div className="border-2 border-gray-300 rounded-xl flex-grow max-w-md w-full p-5">
+    <div className="border border-gray-300 rounded-xl flex-grow max-w-lg w-full p-5">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
           <FormField
             control={form.control}
-            name="name"
+            name="providerName"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Name</FormLabel>
@@ -157,7 +162,7 @@ const MealProviderForm = () => {
             </div>
           )}
 
-          <Button type="submit" className="mt-5 w-full">
+          <Button type="submit" className="mt-5 w-full bg-[#4CAF50] hover:bg-[#4bce4f]">
             {isSubmitting ? (
               <ImSpinner3 className="animate-spin text-center text-lg flex items-center justify-center" />
             ) : (

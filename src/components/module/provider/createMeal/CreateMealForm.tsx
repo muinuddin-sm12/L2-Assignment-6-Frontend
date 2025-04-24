@@ -24,6 +24,8 @@ import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
 import { IProvier } from "@/types";
 import { createMeal } from "@/services/Meal";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createMealValidationSchema } from "./createMealFormValidation";
 // import { useUser } from "@/context/UserContext";
 // import { getALLUser } from "@/services/User";
 // import { getALLProvider } from "@/services/Provider";
@@ -33,7 +35,9 @@ const CreateMealForm = ({providerData}:{providerData: IProvier}) => {
   const [imagePreview, setImagePreview] = useState<string[] | []>([]);
   const router = useRouter();
   
-  const form = useForm();
+  const form = useForm<FieldValues>({
+    resolver: zodResolver(createMealValidationSchema)
+  });
   //   {
   // resolver: zodResolver(registerValidation),
   //   }
@@ -52,14 +56,16 @@ const CreateMealForm = ({providerData}:{providerData: IProvier}) => {
       price,
       providerId: providerData?._id,
     }
-    console.log(fullFormData)
+    // console.log(fullFormData)
     try {
       const formData = new FormData();
       formData.append("data", JSON.stringify(fullFormData));
       formData.append("image", imageFiles[0]);
       const res = await createMeal(formData);
+      // console.log('res.....', res)
       if (res?.success) {
         toast.success(res?.message);
+        form.reset();
         router.push("/find-meals");
       } else {
         toast.error(res?.message);

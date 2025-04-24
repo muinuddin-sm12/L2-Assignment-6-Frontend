@@ -16,13 +16,17 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ImSpinner3 } from "react-icons/im";
+import { loginSchema } from "./loginValidation";
 
 export default function LoginForm() {
-  const form = useForm();
+  const form = useForm({
+    resolver: zodResolver(loginSchema)
+  });
   const { setIsLoading } = useUser();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirectPath");

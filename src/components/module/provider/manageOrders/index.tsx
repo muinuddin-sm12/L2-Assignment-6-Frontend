@@ -87,6 +87,15 @@ const ManagaOrders = ({ orders }: TOrderProps) => {
       ),
     },
     {
+      accessorKey: "customizations",
+      header: () => <div>Preference</div>,
+      cell: ({ row }) => (
+        <div className="flex items-center space-x-3">
+          <span className="truncate">{row.original.mealPlanId}</span>
+        </div>
+      ),
+    },
+    {
       accessorKey: "orderStatus",
       header: () => <div>Status</div>,
       cell: ({ row }) => (

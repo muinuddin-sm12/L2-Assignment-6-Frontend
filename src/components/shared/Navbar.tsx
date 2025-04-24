@@ -18,7 +18,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const {user, setIsLoading} = useUser()
   const menuItems = [
-    {name:'Plans & Packages', path: '/meal-plan'},
+    {name:'Plans & Packages', path: '/plans-and-packages'},
     {name: 'Menu', path: '/find-meals'},
     {name: 'Blog', path: '/blog'}
   ]

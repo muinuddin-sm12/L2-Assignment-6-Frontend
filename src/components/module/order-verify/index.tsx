@@ -13,7 +13,7 @@ import Link from "next/link";
 import { IVerifyOrderData } from "@/types";
 
 const OrderVerify = ({ data }: {data: IVerifyOrderData[]}) => {
-  console.log(data);
+  // console.log(data);
   const orderData = data?.[0];
   return (
     <div className="container mx-auto px-6 md:px-12 lg:px-20 py-6">

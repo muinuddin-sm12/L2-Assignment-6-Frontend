@@ -51,7 +51,7 @@ const CreateMealPlanForm = ({ providerData }: { providerData: IProvier }) => {
         pricePerDay: parseFloat(data?.pricePerDay),
         providerId: providerData?._id,
       };
-      console.log('new data',newData);
+      // console.log('new data',newData);
       const res = await createMealPlan(newData);
       if (res?.success) {
         toast.success(res?.message);

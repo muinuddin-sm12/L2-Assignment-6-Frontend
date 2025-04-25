@@ -45,7 +45,7 @@ const MealProviderForm = () => {
       userId: user?._id,
       cuisineSpecialties,
     }
-    console.log('...', fullFormData)
+    // console.log('...', fullFormData)
     try {
       const formData = new FormData();
     
@@ -54,7 +54,7 @@ const MealProviderForm = () => {
 
       // console.log(formData);
       const res = await createProvider(formData);
-      console.log(res);
+      // console.log(res);
       if (res?.success) {
         router.refresh();
         toast.success("Request send successfully");

@@ -40,11 +40,11 @@ const PlanDetailsPage = ({ data }: { data: IMealPlan }) => {
       router.push("/login");
       return;
     }
-    if (!data || !data.pricePerMeal) {
-      toast.error("Missing plan data. Please try again.");
-      setIsLoading(false);
-      return;
-    }
+    // if (!data || !data.pricePerMeal) {
+    //   toast.error("Missing plan data. Please try again.");
+    //   setIsLoading(false);
+    //   return;
+    // }
     const checkOutDetails = {
       providerId: data?.providerId?._id,
       customerId: user?._id,

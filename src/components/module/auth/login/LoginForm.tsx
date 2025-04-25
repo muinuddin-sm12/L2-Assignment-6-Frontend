@@ -52,8 +52,9 @@ export default function LoginForm() {
       } else {
         toast.error(res?.message);
       }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error: any) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

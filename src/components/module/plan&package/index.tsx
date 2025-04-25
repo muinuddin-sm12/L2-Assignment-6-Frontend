@@ -54,7 +54,7 @@ const mealPlanType = [
   },
 ];
 const PlanAndPackagePage = ({ data }: { data: IMealPlan[] }) => {
-  console.log(data)
+  // console.log(data)
   const [selectedType, setSelectedType] = useState<string>();
   const [initiateData, setInitiateData] = useState(data);
   const router = useRouter();

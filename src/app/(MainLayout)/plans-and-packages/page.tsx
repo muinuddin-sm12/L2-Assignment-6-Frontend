@@ -4,7 +4,7 @@ import React from "react";
 
 const PlanAndPackage = async () => {
   const plans = await getALlMealsPlans();
-  console.log(plans)
+  // console.log(plans)
   return (
     <div>
       <PlanAndPackagePage data={plans?.data}/>

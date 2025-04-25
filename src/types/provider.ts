@@ -1,6 +1,11 @@
 export interface IProvier {
     _id: string;
-    userId: string;
+    userId: {
+        _id: string;
+        name: string;
+        email: string;
+        image?: string;
+      };
     providerName : string;
     about: string;
     logo?: string;

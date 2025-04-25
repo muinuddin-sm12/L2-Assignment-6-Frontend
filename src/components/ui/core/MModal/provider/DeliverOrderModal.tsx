@@ -15,7 +15,7 @@ interface RequestModalProps {
   onConfirm: () => void;
 }
 
-const CancelOrderModal: React.FC<RequestModalProps> = ({
+const DeliverOrderModal: React.FC<RequestModalProps> = ({
   isOpen,
   onOpenChange,
   onConfirm,
@@ -26,8 +26,7 @@ const CancelOrderModal: React.FC<RequestModalProps> = ({
         <DialogHeader>
           <DialogTitle>Accept Order</DialogTitle>
           <DialogDescription>
-            Are you sure you want to cancel this order?{" "}
-            You can not undo this action!
+            Are you sure you want to deliver this order?{" "}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
@@ -49,4 +48,4 @@ const CancelOrderModal: React.FC<RequestModalProps> = ({
   );
 };
 
-export default CancelOrderModal;
+export default DeliverOrderModal;

@@ -18,8 +18,6 @@ import { toast } from "sonner";
 import { Textarea } from "@/components/ui/textarea";
 import { createMealPlan } from "@/services/mealPlan";
 import { IProvier } from "@/types";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { createMealPlanValidationShcema } from "./createMealPlanValidation";
 
 const days = [
   "sunday",
@@ -35,9 +33,7 @@ const meals = ["breakfast", "lunch", "dinner"];
 const CreateMealPlanForm = ({ providerData }: { providerData: IProvier }) => {
   // const router = useRouter();
 
-  const form = useForm<FieldValues>({
-    resolver: zodResolver(createMealPlanValidationShcema)
-  });
+  const form = useForm<FieldValues>();
   //   {
   // resolver: zodResolver(registerValidation),
   //   }

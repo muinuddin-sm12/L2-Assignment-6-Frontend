@@ -22,7 +22,7 @@ export const createMeal = async (data: FormData) => {
     return Error(error);
   }
 };
-export const getALlMeals = async (query: string|undefined) => {
+export const getALlMeals = async (query?: string|undefined) => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/meals?search=${query}`, {
       next: {

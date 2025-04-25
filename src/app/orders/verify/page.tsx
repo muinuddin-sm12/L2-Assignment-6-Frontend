@@ -8,7 +8,7 @@ interface Props {
 }
 const page = async ({ searchParams }: Props) => {
   const query = await searchParams;
-  const data = await verifyPayment(query.order_id);
+  const data = await verifyPayment(query.order_id as string);
   return (
     <div>
       <OrderVerify data={data.data}/>

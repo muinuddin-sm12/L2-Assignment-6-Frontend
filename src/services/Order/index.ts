@@ -56,8 +56,8 @@ export const getSpecificProviderOrders = async (providerId: {
   }
 };
 export const updateOrderStatus = async (
-  orderId: { orderId: string },
-  data: { data: Partial<IOrder> }
+  orderId: string ,
+  data: Partial<IOrder> 
 ) => {
   try {
     const res = await fetch(
@@ -78,9 +78,7 @@ export const updateOrderStatus = async (
   }
 };
 
-export const verifyPayment = async (orderId: {
-  orderId: string;
-}) => {
+export const verifyPayment = async (orderId: string) => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/orders/verify?order_id=${orderId}`

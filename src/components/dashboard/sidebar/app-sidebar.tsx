@@ -22,7 +22,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-// import { NavUser } from "./nav-user";
 import Link from "next/link";
 import Logo from "@/assets/Logo(01).png";
 import Image from "next/image";

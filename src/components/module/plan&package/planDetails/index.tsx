@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { IMealPlan } from "@/types/mealPlan";
 import Image from "next/image";
@@ -21,14 +22,9 @@ const PlanDetailsPage = ({ data }: { data: IMealPlan }) => {
     "Lunch",
     "Dinner",
   ]);
-  const [startDate, setStartDate] = useState(new Date());
-  let planPrice;
-  if (selectedMeals) {
-    const pricePerDay = data?.pricePerMeal * selectedMeals.length;
-    planPrice = pricePerDay * 7;
-  } else {
-    planPrice = data?.pricePerMeal * 21;
-  }
+  const [startDate, setStartDate] = useState<Date | null>(new Date());
+  const pricePerDay = data?.pricePerMeal * selectedMeals.length;
+  const planPrice = pricePerDay * 7;
   const deliveryFee = 20;
   const vat = parseFloat((((planPrice + deliveryFee) / 100) * 5).toFixed(2));
   const totalPrice = planPrice + deliveryFee + vat;
@@ -42,6 +38,12 @@ const PlanDetailsPage = ({ data }: { data: IMealPlan }) => {
     setIsLoading(true);
     if (!user) {
       router.push("/login");
+      return;
+    }
+    if (!data || !data.pricePerMeal) {
+      toast.error("Missing plan data. Please try again.");
+      setIsLoading(false);
+      return;
     }
     const checkOutDetails = {
       providerId: data?.providerId?._id,
@@ -182,7 +184,11 @@ const PlanDetailsPage = ({ data }: { data: IMealPlan }) => {
           </div>
           <div className="w-full">
             <Button
-              disabled={selectedMeals.length < 2}
+              disabled={
+                selectedMeals.length < 2 ||
+                user?.role === "provider" ||
+                user?.role === "admin"
+              }
               onClick={() => handleCheckout()}
               className="bg-[#4CAF50] cursor-pointer w-full rounded-2xl text-base font-[600] py-6 hover:bg-[#5acc5e]"
             >

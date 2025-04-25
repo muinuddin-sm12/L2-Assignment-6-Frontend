@@ -20,7 +20,7 @@ export const createMealPlan = async (data: any) => {
     return Error(error);
   }
 };
-export const getALlMealsPlans = async (query: string|undefined) => {
+export const getALlMealsPlans = async (query?: string) => {
   try {
     const url = query? `/meal-plan?mealPlanType=${query}` : `/meal-plan`;
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}${url}`, {

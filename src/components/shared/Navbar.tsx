@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Logo from "@/assets/Logo.png";
 import Link from "next/link";
 import { LogOut } from "lucide-react";

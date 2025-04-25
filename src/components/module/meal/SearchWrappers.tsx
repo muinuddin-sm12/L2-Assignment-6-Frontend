@@ -6,10 +6,10 @@ import { CircleX } from "lucide-react";
 import { getALlMeals } from "@/services/Meal";
 import { IMeal } from "@/types/meal";
 
-const SearchWrappers = (allMeals:  {allMeals : Partial<IMeal[]>}) => {
+const SearchWrappers = ({allMeals}:  {allMeals : IMeal[]}) => {
     // console.log('....',allMeals)
   const [searchText, setSearchText] = useState("");
-  const [meals, setMeals] = useState([allMeals]);
+  const [meals, setMeals] = useState<IMeal[]>(allMeals || []);
 
   useEffect(() => {
     const fetchMeals = async () => {

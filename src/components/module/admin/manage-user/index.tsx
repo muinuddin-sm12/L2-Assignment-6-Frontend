@@ -43,8 +43,7 @@ const ManageUsers = ({ users }: TUserProps) => {
       console.error(err?.message);
     }
   };
-  // console.log(users)
-  const columns: ColumnDef<TUserProps>[] = [
+  const columns: ColumnDef<IUser>[] = [
     {
       accessorKey: "name",
       header: () => <div>User Name</div>,
@@ -52,7 +51,7 @@ const ManageUsers = ({ users }: TUserProps) => {
         <div className="flex items-center space-x-3">
           <Image
             src={row.original.image}
-            alt={row.original.name}
+            alt={row?.original?.name || 'image'}
             width={40}
             height={40}
             className="w-8 h-8 rounded-full"
@@ -61,23 +60,6 @@ const ManageUsers = ({ users }: TUserProps) => {
         </div>
       ),
     },
-    // {
-    //   accessorKey: "isActive",
-    //   header: () => <div>isActive</div>,
-    //   cell: ({ row }) => (
-    //     <div>
-    //       {row?.original?.isActive ? (
-    //         <p className="text-red-500 border bg-red-100 w-14 text-center px-1 rounded">
-    //           False
-    //         </p>
-    //       ) : (
-    //         <p className="text-green-500 border bg-green-100 w-14 text-center px-1 rounded">
-    //           True
-    //         </p>
-    //       )}
-    //     </div>
-    //   ),
-    // },
     {
       accessorKey: "role",
       header: () => <div>User Role</div>,

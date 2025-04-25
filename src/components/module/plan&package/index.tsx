@@ -76,7 +76,7 @@ const PlanAndPackagePage = ({ data }: { data: IMealPlan[] }) => {
     router.push(`/plans-and-packages/${id}`)
   }
 
-  console.log(initiateData)
+  // console.log(initiateData)
   return (
     <div>
       <div>
@@ -133,7 +133,7 @@ const PlanAndPackagePage = ({ data }: { data: IMealPlan[] }) => {
                     <div className="flex items-end gap-1 text-sm">
                       <Image
                         className="rounded-full object-cover"
-                        src={plan?.providerId?.logo}
+                        src={plan?.providerId?.logo || ""}
                         alt="provider img"
                         height={30}
                         width={30}

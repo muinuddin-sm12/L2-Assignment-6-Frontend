@@ -3,7 +3,7 @@ import { getALlMeals } from "@/services/Meal";
 import React from "react";
 
 const MenuPage = async () => {
-  const mealData = await getALlMeals("");
+  const mealData = await getALlMeals();
   return (
     <div>
       <h1 className="text-6xl font-[900] pt-20 pb-24 ">

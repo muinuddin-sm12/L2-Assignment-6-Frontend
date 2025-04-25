@@ -24,24 +24,14 @@ import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
 import { IProvier } from "@/types";
 import { createMeal } from "@/services/Meal";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { createMealValidationSchema } from "./createMealFormValidation";
-// import { useUser } from "@/context/UserContext";
-// import { getALLUser } from "@/services/User";
-// import { getALLProvider } from "@/services/Provider";
 
 const CreateMealForm = ({providerData}:{providerData: IProvier}) => {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   const [imagePreview, setImagePreview] = useState<string[] | []>([]);
   const router = useRouter();
   
-  const form = useForm<FieldValues>({
-    resolver: zodResolver(createMealValidationSchema)
-  });
-  //   {
-  // resolver: zodResolver(registerValidation),
-  //   }
-
+  const form = useForm<FieldValues>();
+ 
   const {
     formState: { isSubmitting },
   } = form;

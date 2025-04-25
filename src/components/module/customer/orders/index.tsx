@@ -9,7 +9,7 @@ type TOrderProps = {
 const ManageOrders = ({orders}: TOrderProps) => {
     // console.log(orders);
 
-    const columns: ColumnDef<TOrderProps>[] = [
+    const columns: ColumnDef<IOrder>[] = [
         {
           accessorKey: "_id",
           header: () => <div>Order ID</div>,

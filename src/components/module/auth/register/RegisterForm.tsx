@@ -23,15 +23,15 @@ import MImageUploader from "@/components/ui/core/MImageUploader";
 import { useState } from "react";
 import { registerUser } from "@/services/Auth";
 import { useRouter } from "next/navigation";
-import { registerValidationSchema } from "./registerValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { registerValidationSchema } from "./registerValidation";
 
 const RegisterForm = () => {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   const [imagePreview, setImagePreview] = useState<string[] | []>([]);
   const router = useRouter();
 
-  const form = useForm<FieldValues>({
+  const form = useForm({
     resolver: zodResolver(registerValidationSchema)
   });
 
@@ -150,7 +150,7 @@ const RegisterForm = () => {
           )}
 
           <Button
-            disabled={passwordConfirm && password !== passwordConfirm}
+            disabled={passwordConfirm !== "" && password !== passwordConfirm}
             type="submit"
             className="mt-5 w-full bg-[#4CAF50] hover:bg-[#4bce4f]"
           >

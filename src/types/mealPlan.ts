@@ -1,3 +1,5 @@
+import { IProvier } from "./provider";
+
 interface IMeal {
     breakfast: string;
     lunch: string;
@@ -16,7 +18,7 @@ interface IMenu {
 
 export interface IMealPlan {
     _id: string;
-    providerId: string;
+    providerId: IProvier;
     title: string;
     description: string;
     scheduleType: string;

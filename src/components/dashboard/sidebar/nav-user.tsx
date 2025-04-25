@@ -36,6 +36,7 @@ export function NavUser({ currentUserData }: { currentUserData: IUser }) {
     if (protectedRoutes.some((route) => pathname.match(route))) {
       router.push("/");
     }
+    router.push('/')
   };
 
   return (

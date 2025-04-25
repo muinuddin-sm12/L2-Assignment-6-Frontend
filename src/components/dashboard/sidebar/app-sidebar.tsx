@@ -11,6 +11,7 @@ import {
   ChefHat,
   Package,
   LayoutDashboard,
+  List,
 } from "lucide-react";
 
 import {
@@ -60,6 +61,11 @@ const data = {
       title: "Create Meal",
       url: "/provider/create-meal",
       icon: Utensils,
+    },
+    {
+      title: "My Meals",
+      url: "/provider/my-meals",
+      icon: List,
     },
     {
       title: "Create Meal Plan",

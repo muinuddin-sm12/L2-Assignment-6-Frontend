@@ -44,3 +44,13 @@ export const getSingleMeal = async (mealId: string) => {
     return Error(error);
   }
 };
+export const getSpecificProviderMeals = async (providerId: string) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/meals/provider/${providerId}`
+    );
+    return res.json();
+  } catch (error: any) {
+    return Error(error);
+  }
+};

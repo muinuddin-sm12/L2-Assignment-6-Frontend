@@ -119,7 +119,7 @@ const CreateMealPlanForm = ({ providerData }: { providerData: IProvier }) => {
                 <FormControl>
                   <select
                     {...field}
-                    className="w-full text-sm px-3 py-2 border rounded-md bg-white dark:bg-slate-900"
+                    className="w-full text-sm px-3 py-2 border rounded-md"
                   >
                     <option value="">Select plan type</option>
                     <option value="balanced">Balanced</option>
@@ -143,7 +143,7 @@ const CreateMealPlanForm = ({ providerData }: { providerData: IProvier }) => {
                 <FormControl>
                   <select
                     {...field}
-                    className="w-full text-sm px-3 py-2 border rounded-md bg-white dark:bg-slate-900"
+                    className="w-full text-sm px-3 py-2 border rounded-md"
                   >
                     <option value="">Select schedule</option>
                     <option value="weekly">Weekly</option>

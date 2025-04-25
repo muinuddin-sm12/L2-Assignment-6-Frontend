@@ -21,7 +21,7 @@ const WhyMealCraft = () => {
   return (
     <div className='min-h-screen py-20'>
         <div className='pb-16'>
-            <h1 className='text-6xl font-[700]'>Why<br/> MealCraft?</h1>
+            <h1 className='text-5xl font-[700]'>Why<br/> MealCraft?</h1>
         </div>
         <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
 {data.map((d, index) => (

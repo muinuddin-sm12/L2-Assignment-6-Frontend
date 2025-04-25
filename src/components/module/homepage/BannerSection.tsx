@@ -12,7 +12,7 @@ const BannerSection = () => {
 
       {/* Content Layer */}
       <div className="relative z-10 w-[500px] mx-auto text-center p-8 rounded-xl ">
-        <h1 className="text-6xl font-bold mb-4">
+        <h1 className="text-6xl font-bold mb-4 leading-16">
           Healthy Eating <br /> for Busy People
         </h1>
         <p className="text-gray-700 mb-4">

@@ -33,7 +33,7 @@ const Navbar = () => {
     router.push('/')
   };
   return (
-    <div className="h-20 px-6 md:px-12 lg:px-20 flex items-center justify-between ">
+    <div className="h-24 px-6 md:px-12 lg:px-20 flex items-center justify-between ">
       <div>
         <Link href="/">
           <h1 className="text-2xl flex items-center font-[600] ">

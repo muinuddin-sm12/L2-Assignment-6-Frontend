@@ -3,7 +3,7 @@ import { getCurrentUser } from '@/services/Auth';
 import { getSpecificUserOrders } from '@/services/Order';
 import React from 'react'
 
-const MyOrdersPage = async() => {
+const OrdersPage = async() => {
   const currentUser = await getCurrentUser();
   // console.log(currentUser)
   const currentUserOrders = await getSpecificUserOrders(currentUser?._id)
@@ -14,4 +14,4 @@ const MyOrdersPage = async() => {
   )
 }
 
-export default MyOrdersPage
+export default OrdersPage

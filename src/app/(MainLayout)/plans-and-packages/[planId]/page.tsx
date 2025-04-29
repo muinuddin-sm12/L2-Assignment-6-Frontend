@@ -2,7 +2,7 @@ import PlanDetailsPage from "@/components/module/plan&package/planDetails";
 import { getSingleMealsPlans } from "@/services/mealPlan";
 import React from "react";
 
-const DynamicPlan = async ({
+const DynamicPlanPage = async ({
   params,
 }: {
   params: Promise<{ planId: string }>;
@@ -15,4 +15,4 @@ const DynamicPlan = async ({
   </div>;
 };
 
-export default DynamicPlan;
+export default DynamicPlanPage;

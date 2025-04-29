@@ -25,7 +25,7 @@ import { loginSchema } from "./loginValidation";
 
 export default function LoginForm() {
   const form = useForm({
-    resolver: zodResolver(loginSchema)
+    resolver: zodResolver(loginSchema),
   });
   const { setIsLoading } = useUser();
   const searchParams = useSearchParams();
@@ -52,9 +52,8 @@ export default function LoginForm() {
       } else {
         toast.error(res?.message);
       }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error: any) {
-      // console.log(error);
+      toast.error(error.message);
     }
   };
 
@@ -96,8 +95,11 @@ export default function LoginForm() {
             )}
           />
 
-          <Button type="submit" className="mt-5 w-full bg-[#4CAF50] hover:bg-[#4bce4f]">
-          {isSubmitting ? (
+          <Button
+            type="submit"
+            className="mt-5 w-full bg-[#4CAF50] hover:bg-[#4bce4f]"
+          >
+            {isSubmitting ? (
               <ImSpinner3 className="animate-spin text-center text-lg flex items-center justify-center" />
             ) : (
               "Login"

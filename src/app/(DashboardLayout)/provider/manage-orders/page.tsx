@@ -4,7 +4,7 @@ import { getCurrentUser } from "@/services/Auth";
 import { getSpecificProviderOrders } from "@/services/Order";
 import { getALLProvider } from "@/services/Provider";
 
-const ManageOrderPage = async () => {
+const ManageOrdersPage = async () => {
   const currentUser = await getCurrentUser();
   const allProviders = await getALLProvider();
   const currentProvider = allProviders?.data?.find(
@@ -18,4 +18,4 @@ const ManageOrderPage = async () => {
   );
 };
 
-export default ManageOrderPage;
+export default ManageOrdersPage;

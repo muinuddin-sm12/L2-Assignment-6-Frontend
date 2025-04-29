@@ -1,12 +1,12 @@
 import OrderVerify from "@/components/module/order-verify";
 import { verifyPayment } from "@/services/Order";
 import React from "react";
-interface PageProps {
+interface OrderVerifyProps {
   searchParams: Promise<{
     [key: string]: string | string[] | undefined;
   }>;
 }
-const page = async ({ searchParams }: PageProps) => {
+const OrderVerifyPage = async ({ searchParams }: OrderVerifyProps) => {
   const query = await searchParams;
   const data = await verifyPayment(query.order_id as string);
   return (
@@ -16,4 +16,4 @@ const page = async ({ searchParams }: PageProps) => {
   );
 };
 
-export default page;
+export default OrderVerifyPage;

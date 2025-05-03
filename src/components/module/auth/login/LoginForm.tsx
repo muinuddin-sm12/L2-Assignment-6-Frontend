@@ -54,11 +54,7 @@ export default function LoginForm() {
         toast.error(res?.message);
       }
     } catch (error: any) {
-<<<<<<< HEAD
-      toast.error(error.message)
-=======
       toast.error(error.message);
->>>>>>> 7a0829f9520b92e0c0519ccccaa96ddda99ef8cf
     }
   };
 
@@ -99,17 +95,11 @@ export default function LoginForm() {
               </FormItem>
             )}
           />
-
-<<<<<<< HEAD
-          <Button type="submit" className="mt-5 cursor-pointer w-full bg-[#4CAF50] hover:bg-[#4bce4f]">
-          {isSubmitting ? (
-=======
           <Button
             type="submit"
             className="mt-5 w-full bg-[#4CAF50] hover:bg-[#4bce4f]"
           >
             {isSubmitting ? (
->>>>>>> 7a0829f9520b92e0c0519ccccaa96ddda99ef8cf
               <ImSpinner3 className="animate-spin text-center text-lg flex items-center justify-center" />
             ) : (
               "Login"

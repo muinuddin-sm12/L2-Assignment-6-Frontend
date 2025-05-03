@@ -66,10 +66,10 @@ const Navbar = () => {
                   {/* <DropdownMenuItem>My Shop</DropdownMenuItem> */}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
-                    className="bg-red-500 cursor-pointer"
+                    className="bg-[#F4511E] text-white cursor-pointer"
                     onClick={handleLogOut}
                   >
-                    <LogOut />
+                    <LogOut className="text-white"/>
                     <span>Log Out</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>

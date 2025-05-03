@@ -19,7 +19,7 @@ const BannerSection = () => {
           Custom meal plans and personalized recipes — crafted to save your time
           and help you eat better, every day.
         </p>
-      <Link href={'/find-meals'}><Button className="bg-[#4CAF50] hover:bg-[#5ed662] px-6 py-6 text-base ">Explore Meals</Button></Link>
+      <Link href={'/find-meals'}><Button className="bg-[#4CAF50] hover:bg-[#5ed662] px-6 py-6 text-base cursor-pointer ">Explore Meals</Button></Link>
       </div>
 
     </div>

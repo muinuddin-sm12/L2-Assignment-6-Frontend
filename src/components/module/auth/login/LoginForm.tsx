@@ -43,18 +43,18 @@ export default function LoginForm() {
       setIsLoading(true);
       if (res?.success) {
         toast.success(res?.message);
-        router.refresh();
         if (redirect) {
           router.push(redirect);
+          router.refresh();
         } else {
           router.push("/");
+          router.refresh();
         }
       } else {
         toast.error(res?.message);
       }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error: any) {
-      // console.log(error);
+      toast.error(error.message)
     }
   };
 
@@ -96,7 +96,7 @@ export default function LoginForm() {
             )}
           />
 
-          <Button type="submit" className="mt-5 w-full bg-[#4CAF50] hover:bg-[#4bce4f]">
+          <Button type="submit" className="mt-5 cursor-pointer w-full bg-[#4CAF50] hover:bg-[#4bce4f]">
           {isSubmitting ? (
               <ImSpinner3 className="animate-spin text-center text-lg flex items-center justify-center" />
             ) : (

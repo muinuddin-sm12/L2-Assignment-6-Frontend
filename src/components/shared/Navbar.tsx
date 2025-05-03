@@ -30,7 +30,7 @@ const Navbar = () => {
     if (protectedRoutes.some((route) => pathname.match(route))) {
       router.push("/");
     }
-    router.push('/')
+    router.push('/');
   };
   return (
     <div className="h-24 px-6 md:px-12 lg:px-20 flex items-center justify-between ">

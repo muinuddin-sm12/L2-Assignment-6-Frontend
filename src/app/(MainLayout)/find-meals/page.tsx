@@ -2,7 +2,7 @@ import SearchWrappers from "@/components/module/meal/SearchWrappers";
 import { getALlMeals } from "@/services/Meal";
 import React from "react";
 
-const MenuPage = async () => {
+const MealsPage = async () => {
   const mealData = await getALlMeals();
   return (
     <div>
@@ -14,4 +14,4 @@ const MenuPage = async () => {
   );
 };
 
-export default MenuPage;
+export default MealsPage;

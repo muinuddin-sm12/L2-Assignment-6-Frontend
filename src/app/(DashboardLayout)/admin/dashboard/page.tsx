@@ -1,8 +1,8 @@
 
-const page = () => {
+const AdminDashboardPage = () => {
   return (
     <div>Welcome to Admin Dashboard</div>
   )
 }
 
-export default page
+export default AdminDashboardPage

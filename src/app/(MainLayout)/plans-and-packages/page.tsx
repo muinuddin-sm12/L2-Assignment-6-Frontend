@@ -2,7 +2,7 @@ import PlanAndPackagePage from "@/components/module/plan&package";
 import { getALlMealsPlans } from "@/services/mealPlan";
 import React from "react";
 
-const PlanAndPackage = async () => {
+const PlanAndPackagesPage = async () => {
   const plans = await getALlMealsPlans();
   // console.log(plans)
   return (
@@ -12,4 +12,4 @@ const PlanAndPackage = async () => {
   );
 };
 
-export default PlanAndPackage;
+export default PlanAndPackagesPage;

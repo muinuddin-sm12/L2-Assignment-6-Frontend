@@ -4,7 +4,7 @@ import { getCurrentUser } from '@/services/Auth';
 import { getALLProvider } from '@/services/Provider';
 import React from 'react'
 
-const page = async() => {
+const MyMealPage = async() => {
     const user = await getCurrentUser();
     const providers = await getALLProvider();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -17,4 +17,4 @@ const page = async() => {
   )
 }
 
-export default page
+export default MyMealPage

@@ -6,8 +6,8 @@ A full-stack web application that empowers users to personalize their meal plans
 
 ## 🔗 Live Demo
 
-- Frontend: [mealCraft-frontend.vercel.app](https://l2-assignment-6-frontend.vercel.app)
-- Backend: [mealCraft-backend.vercel.com](https://l2-assignment-6-backend.vercel.app)
+- Frontend: [meal-craft-client.vercel.app](https://meal-craft-client.vercel.app)
+- Backend Repo: [MealCraft-server](https://github.com/muinuddin-sm12/MealCraft-server)
 
 ---
 

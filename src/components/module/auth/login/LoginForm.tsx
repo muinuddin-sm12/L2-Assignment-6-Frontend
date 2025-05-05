@@ -6,7 +6,7 @@ import { loginUser } from "@/services/Auth";
 import { toast } from "sonner";
 import Logo from "@/assets/Logo.png";
 import { useRouter, useSearchParams } from "next/navigation";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import Image from "next/image";
 import {
   Form,
@@ -22,11 +22,48 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ImSpinner3 } from "react-icons/im";
 import { loginSchema } from "./loginValidation";
+import { useEffect, useState } from "react";
+
+const customerCredentials = {
+  email: "mahin@gmail.com",
+  password: "123456",
+};
+const adminCredentials = {
+  email: "nabil@gmail.com",
+  password: "654321",
+};
+const providerCredentials = {
+  email: "shakil@gmail.com",
+  password: "123456",
+};
+interface IFormValues {
+  email: string;
+  password: string;
+}
 
 export default function LoginForm() {
-  const form = useForm({
+  const [defaultEmail, setDefaultEmail] = useState<string | undefined>(
+    undefined
+  );
+  const [defaultPassword, setDefaultPassword] = useState<string | undefined>(
+    undefined
+  );
+  const form = useForm<IFormValues>({
     resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: defaultEmail,
+      password: defaultPassword,
+    },
   });
+  useEffect(() => {
+    if (defaultEmail || defaultPassword) {
+      form.reset({
+        email: defaultEmail || "",
+        password: defaultPassword || "",
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultEmail, defaultPassword]);
   const { setIsLoading } = useUser();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirectPath");
@@ -36,7 +73,7 @@ export default function LoginForm() {
     formState: { isSubmitting },
   } = form;
 
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+  const onSubmit: SubmitHandler<IFormValues> = async (data) => {
     // console.log(data)
     try {
       const res = await loginUser(data);
@@ -58,13 +95,52 @@ export default function LoginForm() {
     }
   };
 
+  const handleCredentials = (role: string) => {
+    console.log(role);
+    if (role === "admin") {
+      setDefaultEmail(adminCredentials.email);
+      setDefaultPassword(adminCredentials.password);
+    }
+    if (role === "provider") {
+      setDefaultEmail(providerCredentials.email);
+      setDefaultPassword(providerCredentials.password);
+    }
+    if (role === "customer") {
+      setDefaultEmail(customerCredentials.email);
+      setDefaultPassword(customerCredentials.password);
+    }
+  };
+  console.log("default email", defaultEmail);
+  console.log("default password", defaultPassword);
   return (
     <div className="border-2 border-gray-300 rounded-xl flex-grow max-w-md w-full p-5">
-      <div className="flex items-center space-x-4 mb-6">
-        <Image src={Logo} height={30} width={30} alt="logo" />
-        <div>
-          <h1 className="text-xl font-semibold">Login</h1>
-          <p className="font-light text-sm text-gray-600">Welcome back!</p>
+      <div className="flex flex-col">
+        <div className="flex items-center space-x-4 mb-6">
+          <Image src={Logo} height={30} width={30} alt="logo" />
+          <div>
+            <h1 className="text-xl font-semibold">Login</h1>
+            <p className="font-light text-sm text-gray-600">Welcome back!</p>
+          </div>
+        </div>
+        <div className="flex items-center mx-auto mb-6 gap-4 text-[12px] font-light">
+          <div
+            onClick={() => handleCredentials("admin")}
+            className="px-2 py-1 bg-gray-100 hover:bg-[#4CAF50] hover:text-white transition-colors duration-500 cursor-pointer rounded-full"
+          >
+            Admin Credentials
+          </div>
+          <div
+            onClick={() => handleCredentials("provider")}
+            className="px-2 py-1 bg-gray-100 hover:bg-[#4CAF50] hover:text-white transition-colors duration-500 cursor-pointer rounded-full"
+          >
+            Provider Credentials
+          </div>
+          <div
+            onClick={() => handleCredentials("customer")}
+            className="px-2 py-1 bg-gray-100 hover:bg-[#4CAF50] hover:text-white transition-colors duration-500 cursor-pointer rounded-full"
+          >
+            User Credentials
+          </div>
         </div>
       </div>
       <Form {...form}>
@@ -97,7 +173,7 @@ export default function LoginForm() {
           />
           <Button
             type="submit"
-            className="mt-5 w-full bg-[#4CAF50] hover:bg-[#4bce4f]"
+            className="mt-5 cursor-pointer w-full bg-[#4CAF50] hover:bg-[#4bce4f]"
           >
             {isSubmitting ? (
               <ImSpinner3 className="animate-spin text-center text-lg flex items-center justify-center" />

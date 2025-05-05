@@ -96,7 +96,6 @@ export default function LoginForm() {
   };
 
   const handleCredentials = (role: string) => {
-    console.log(role);
     if (role === "admin") {
       setDefaultEmail(adminCredentials.email);
       setDefaultPassword(adminCredentials.password);
@@ -110,8 +109,6 @@ export default function LoginForm() {
       setDefaultPassword(customerCredentials.password);
     }
   };
-  console.log("default email", defaultEmail);
-  console.log("default password", defaultPassword);
   return (
     <div className="border-2 border-gray-300 rounded-xl flex-grow max-w-md w-full p-5">
       <div className="flex flex-col">

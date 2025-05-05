@@ -55,15 +55,6 @@ export default function LoginForm() {
       password: defaultPassword,
     },
   });
-  useEffect(() => {
-    if (defaultEmail || defaultPassword) {
-      form.reset({
-        email: defaultEmail || "",
-        password: defaultPassword || "",
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [defaultEmail, defaultPassword]);
   const { setIsLoading } = useUser();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirectPath");
@@ -109,6 +100,15 @@ export default function LoginForm() {
       setDefaultPassword(customerCredentials.password);
     }
   };
+  useEffect(() => {
+    if (defaultEmail || defaultPassword) {
+      form.reset({
+        email: defaultEmail || "",
+        password: defaultPassword || "",
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultEmail, defaultPassword]);
   return (
     <div className="border-2 border-gray-300 rounded-xl flex-grow max-w-md w-full p-5">
       <div className="flex flex-col">

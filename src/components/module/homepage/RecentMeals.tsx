@@ -1,7 +1,6 @@
 import { IMeal } from '@/types'
 import React from 'react'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const RecentMeals = ({data}: {data: IMeal[] | []}) => {
     // console.log('meal-data', data)
   return (
@@ -11,6 +10,9 @@ const RecentMeals = ({data}: {data: IMeal[] | []}) => {
           Recent 
           <br />Meals
         </h1>
+      </div>
+      <div>
+        {data.length}
       </div>
     </div>
   )

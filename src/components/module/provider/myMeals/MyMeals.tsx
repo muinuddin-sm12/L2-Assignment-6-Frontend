@@ -16,7 +16,7 @@ const MyMeals = ({ data }: MyMealsProps) => {
     const fetchData = async () => {
       try {
         const res = await getSpecificProviderMeals(data?._id);
-        console.log("use effect", res);
+        // console.log("use effect", res);
         if (res.success) {
           setMeals(res?.data);
         } else {

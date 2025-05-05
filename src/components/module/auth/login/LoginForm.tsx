@@ -2,7 +2,7 @@
 "use client";
 
 import { useUser } from "@/context/UserContext";
-import { loginUser } from "@/services/Auth";
+import { getCurrentUser, loginUser } from "@/services/Auth";
 import { toast } from "sonner";
 import Logo from "@/assets/Logo.png";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -55,7 +55,7 @@ export default function LoginForm() {
       password: defaultPassword,
     },
   });
-  const { setIsLoading } = useUser();
+  const { setUser } = useUser();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirectPath");
   const router = useRouter();
@@ -68,13 +68,14 @@ export default function LoginForm() {
     // console.log(data)
     try {
       const res = await loginUser(data);
-      setIsLoading(true);
+      const user = await getCurrentUser(); // this should be your API call
+      setUser(user);
       if (res?.success) {
         toast.success(res?.message);
         if (redirect) {
-          // router.push(redirect);
-          window.location.href = redirect;
-          router.refresh();
+          router.push(redirect);
+          // window.location.href = redirect;
+          // router.refresh();
         } else {
           router.push("/");
           router.refresh();

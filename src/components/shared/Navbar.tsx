@@ -25,6 +25,9 @@ const Navbar = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { user, setIsLoading } = useUser();
+  
+  console.log(user);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
@@ -54,7 +57,7 @@ const Navbar = () => {
       {/* Desktop Menu */}
       <div className="hidden md:flex items-center gap-8">
         {menuItems.map((menu, index) => (
-          <Link key={index} href={menu.path} className="hover:text-orange-600">
+          <Link key={index} href={menu.path} className="hover:text-[#F4511E]">
             {menu.name}
           </Link>
         ))}

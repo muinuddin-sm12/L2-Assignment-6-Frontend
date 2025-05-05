@@ -15,10 +15,10 @@ const Footer = () => {
         <div>
           <p className="font-medium text-gray-600 mb-1">Overview</p>
           <div className="text-sm flex flex-col">
-            <Link href={"/about-us"} className="hover:text-[#D32F2F]">
+            <Link href={"/about-us"} className="hover:text-[#F4511E]">
               About Us
             </Link>
-            <Link href={"/"} className="hover:text-[#D32F2F]">
+            <Link href={"/"} className="hover:text-[#F4511E]">
               Contact Us
             </Link>
           </div>
@@ -26,10 +26,10 @@ const Footer = () => {
         <div>
           <p className="font-medium text-gray-600 mb-1">Others</p>
           <div className="text-sm flex flex-col">
-            <Link href={"/about-us"} className="hover:text-[#D32F2F]">
+            <Link href={"/about-us"} className="hover:text-[#F4511E]">
               Privacy Policy
             </Link>
-            <Link href={"/"} className="hover:text-[#D32F2F]">
+            <Link href={"/"} className="hover:text-[#F4511E]">
               Disclaimer
             </Link>
           </div>

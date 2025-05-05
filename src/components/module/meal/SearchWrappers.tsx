@@ -33,7 +33,7 @@ const SearchWrappers = ({allMeals}:  {allMeals : IMeal[]}) => {
       <div className="flex relative max-w-[350px] items-center gap-2 ml-auto  mb-8 mt-4">
         <h1 className="text-lg font-[600]">Search</h1>
         <Input
-          className="rounded-full"
+          className="rounded-full border-none"
           type="text"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}

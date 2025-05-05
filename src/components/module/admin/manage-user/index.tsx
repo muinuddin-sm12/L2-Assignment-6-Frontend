@@ -40,7 +40,7 @@ const ManageUsers = ({ users }: TUserProps) => {
         }
       }
     } catch (err: any) {
-      console.error(err?.message);
+      toast.error(err?.message);
     }
   };
   const columns: ColumnDef<IUser>[] = [

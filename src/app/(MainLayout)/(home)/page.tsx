@@ -7,7 +7,7 @@ import React from "react";
 
 const HomePage = async() => {
   const mealsData = await getALlMeals();
-  console.log(mealsData);
+  // console.log(mealsData);
   return (
     <div>
       <BannerSection/>

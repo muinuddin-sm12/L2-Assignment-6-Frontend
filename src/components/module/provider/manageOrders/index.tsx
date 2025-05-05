@@ -51,7 +51,7 @@ const ManagaOrders = ({ orders }: TOrderProps) => {
         }
       }
     } catch (err: any) {
-      console.error(err?.message);
+      toast.error(err?.message);
     }
   };
   const handleDeliverConfirm = async () => {
@@ -70,7 +70,7 @@ const ManagaOrders = ({ orders }: TOrderProps) => {
         }
       }
     } catch (err: any) {
-      console.error(err?.message);
+      toast.error(err?.message);
     }
   };
   const handleOrderCancel = async () => {
@@ -89,7 +89,7 @@ const ManagaOrders = ({ orders }: TOrderProps) => {
         }
       }
     } catch (err: any) {
-      console.error(err?.message);
+      toast.error(err?.message);
     }
   };
 

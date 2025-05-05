@@ -38,7 +38,7 @@ const ProviderRequests = ({ providers }: TProviderProps) => {
           }
         }
       } catch (err: any) {
-        console.error(err?.message);
+        toast.error(err?.message);
       }
     };
 //   console.log(users)

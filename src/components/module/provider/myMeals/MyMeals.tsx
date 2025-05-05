@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { MTable } from "@/components/ui/core/MTable";
 import { getSpecificProviderMeals } from "@/services/Meal";
@@ -5,6 +6,7 @@ import { IMeal, IProvier } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 interface MyMealsProps {
   data: IProvier;
@@ -20,10 +22,10 @@ const MyMeals = ({ data }: MyMealsProps) => {
         if (res.success) {
           setMeals(res?.data);
         } else {
-          console.error("Failed to fetch meals", res.message);
+          toast.error("Failed to fetch meals", res.message);
         }
-      } catch (error) {
-        console.error("Error fetching meals:", error);
+      } catch (error:any) {
+        toast.error(error.message);
       }
     };
 

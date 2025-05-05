@@ -1,5 +1,5 @@
 import LoginForm from '@/components/module/auth/login/LoginForm'
-import React, { Suspense } from 'react'
+import React from 'react'
 
 const LoginPage = () => {
   return (

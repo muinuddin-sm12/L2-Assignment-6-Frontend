@@ -76,7 +76,7 @@ const PlanDetailsPage = ({ data }: { data: IMealPlan }) => {
       <h1 className="text-5xl font-[700] pt-16 pb-12">
         Customize Your <br /> Perfect Meal Plan
       </h1>
-      <div className="flex items-center justify-between gap-20">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-20">
         <div className="max-w-[600px]">
           <h1>{data?.title}</h1>
           <div>
@@ -84,7 +84,7 @@ const PlanDetailsPage = ({ data }: { data: IMealPlan }) => {
           </div>
           <div className="py-14">
             <div>
-              <h1 className="text-3xl font-[700] leading-5">
+              <h1 className="text-3xl font-[700] md:leading-5">
                 How many meals per day?
               </h1>
               <span className="text-sm font-light">
@@ -143,7 +143,7 @@ const PlanDetailsPage = ({ data }: { data: IMealPlan }) => {
             </div> */}
           </div>
         </div>
-        <div className="w-[400px] bg-gray-100 p-6 rounded-3xl ">
+        <div className="md:w-[400px] bg-gray-100 p-6 rounded-3xl ">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-[700] leading-6">

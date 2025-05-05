@@ -82,8 +82,8 @@ const PlanAndPackagePage = ({ data }: { data: IMealPlan[] }) => {
       <div>
         <h1 className="text-5xl font-[700] pt-16 pb-8">Plan Types</h1>
       </div>
-      <div className="flex gap-20 items-start">
-        <div className="flex-1 grid grid-cols-2 gap-4">
+      <div className="flex flex-col md:flex-row gap-20 items-start">
+        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
           {mealPlanType.map((plan, index) => (
             <div
               key={index}

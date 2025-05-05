@@ -7,7 +7,7 @@ import React from "react";
 const MealDetailsPage = ({ data }: { data: IMealDetail }) => {
   // console.log(data);
   return (
-    <div className="min-h-screen flex justify-between  max-w-[900px] mx-auto py-16">
+    <div className="md:min-h-screen flex flex-col md:flex-row justify-between  max-w-[900px] mx-auto py-16">
       <div>
         <div className="mb-3">
           {data.dietaryTags.map((tag, index) => (
@@ -35,7 +35,7 @@ const MealDetailsPage = ({ data }: { data: IMealDetail }) => {
           </div>
         </div>
       </div>
-      <div className="max-w-[350px] mt-[35vh]">
+      <div className="max-w-[350px] mt-8 md:mt-[35vh]">
         <div>
           <h1 className="text-xl font-[600] mb-3">Provider Info: </h1>
           <div className="flex items-end gap-3 mb-2">
@@ -75,7 +75,7 @@ const MealDetailsPage = ({ data }: { data: IMealDetail }) => {
           </div>
           <div>
             <div className="py-6 border-b border-[#4CAF50]">
-              <h1 className="text-xl font-[600] mt-36 mb-3">
+              <h1 className="text-xl font-[600] mt-10 md:mt-36 mb-3">
                 What Our Foodies Say 😊
               </h1>
               <div>

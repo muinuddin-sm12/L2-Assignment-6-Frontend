@@ -13,7 +13,7 @@ const MenuSection = ({ data }: {data: IMeal[] | []}) => {
     router.push(`/find-meals/${id}`);
   };
   return (
-    <div className="grid min-h-screen grid-cols-1 mx-auto w-full sm:grid-cols-2 md:grid-cols-4 gap-6 p-4">
+    <div className="grid min-h-screen grid-cols-1 mx-auto w-full sm:grid-cols-2 md:grid-cols-4 gap-6">
       {data.map((meal, index) => (
         <div
           onClick={() => handleCardClick(meal?._id)}

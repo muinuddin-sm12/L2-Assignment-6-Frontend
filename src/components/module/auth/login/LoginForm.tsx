@@ -72,7 +72,8 @@ export default function LoginForm() {
       if (res?.success) {
         toast.success(res?.message);
         if (redirect) {
-          router.push(redirect);
+          // router.push(redirect);
+          window.location.href = redirect;
           router.refresh();
         } else {
           router.push("/");

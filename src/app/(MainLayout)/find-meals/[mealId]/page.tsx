@@ -11,7 +11,7 @@ const DynamicMealPage = async ({
   // console.log(mealId);
   const mealData = await getSingleMeal(mealId);
   // console.log(mealData) 
-  return <div className="min-h-screen"> 
+  return <div className="min-h-screen px-6 md:px-12 lg:px-20"> 
     <MealDetailsPage data={mealData.data}/>
   </div>;
 };

@@ -10,7 +10,7 @@ const DynamicPlanPage = async ({
   const mealId = (await params).planId;
   const planData = await getSingleMealsPlans(mealId);
   
-  return <div>
+  return <div className="px-6 md:px-12 lg:px-20">
     <PlanDetailsPage data={planData?.data}/>
   </div>;
 };

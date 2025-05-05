@@ -6,7 +6,7 @@ import { IoMdMail } from "react-icons/io";
 
 const Footer = () => {
   return (
-    <div className="pt-6 md:pt-16 border-t mt-12 ">
+    <div className="pt-6 bg-gray-50 rounded-t-3xl md:pt-16 border-t mt-12 ">
       <div className="grid grid-cols-3 md:grid-cols-4 gap-6 mb-4 px-6 md:px-12 lg:px-20 pb-4 md:pb-12">
         <h1 className="text-xl flex items-center font-[600] ">
           <Image src={logo} height={32} width={32} alt="MealCraft Logo" />

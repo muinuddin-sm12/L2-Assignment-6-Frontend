@@ -13,12 +13,12 @@ const MenuSection = ({ data }: {data: IMeal[] | []}) => {
     router.push(`/find-meals/${id}`);
   };
   return (
-    <div className="grid min-h-screen grid-cols-1 mx-auto w-full sm:grid-cols-2 md:grid-cols-3 gap-6 p-4">
+    <div className="grid min-h-screen grid-cols-1 mx-auto w-full sm:grid-cols-2 md:grid-cols-4 gap-6 p-4">
       {data.map((meal, index) => (
         <div
           onClick={() => handleCardClick(meal?._id)}
           key={index}
-          className="relative h-[480px] group overflow-hidden rounded-xl break-inside-avoid cursor-pointer shadow-md"
+          className="relative h-[380px] group overflow-hidden rounded-xl break-inside-avoid cursor-pointer shadow-md"
         >
           {/* Image */}
           <Image

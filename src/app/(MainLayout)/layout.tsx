@@ -4,9 +4,9 @@ import React from "react";
 
 const CommonLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
+    <div className="max-w-[1440px] mx-auto">
       <Navbar/>
-      <main className="min-h-screen px-6 md:px-12 lg:px-20">{children}</main>
+      <main className="">{children}</main>
       <Footer />
     </div>
   );

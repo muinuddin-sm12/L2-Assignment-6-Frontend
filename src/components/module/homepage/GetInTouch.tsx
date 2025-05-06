@@ -27,6 +27,7 @@ const GetInTouch = () => {
         const formData = new FormData();
         formData.append('name', data.name);
         formData.append('email', data.email);
+        formData.append('message', "Hello mr.!");
         formData.append('access_key', process.env.NEXT_PUBLIC_WEB3_FORM_ACCESS_KEY || '')
         const response = await fetch("https://api.web3forms.com/submit", {
             method: "POST",

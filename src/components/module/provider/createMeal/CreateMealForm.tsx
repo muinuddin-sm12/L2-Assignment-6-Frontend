@@ -56,7 +56,7 @@ const CreateMealForm = ({providerData}:{providerData: IProvier}) => {
       if (res?.success) {
         toast.success(res?.message);
         form.reset();
-        router.push("/find-meals");
+        router.push("/menu");
       } else {
         toast.error(res?.message);
       }

@@ -22,8 +22,8 @@ const data = [
 ];
 const WhyMealCraft = () => {
   return (
-    <div className="min-h-screen py-20 px-6 md:px-12 lg:px-20">
-      <div className="pb-16">
+    <div className="pt-20 px-6 md:px-12 lg:px-20">
+      <div className="pb-10">
         <h1 className="text-4xl font-[700]">
           Why
           <br /> MealCraft?

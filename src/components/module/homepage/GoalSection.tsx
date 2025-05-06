@@ -3,13 +3,14 @@ import g_1 from "../../../assets/goalSection/g-1.jpeg";
 import g_2 from "../../../assets/goalSection/g-2.jpeg";
 import g_3 from "../../../assets/goalSection/g-3.jpeg";
 import Image from "next/image";
+import Path_icon from '../../../assets/path_icon.png'
 
 const GoalSection = () => {
   return (
-    <div className="min-h-screen py-20 px-6 md:px-12 lg:px-20">
-      <div className="pb-16">
+    <div className="pt-20 px-6 md:px-12 lg:px-20">
+      <div className="pb-10">
         <h1 className="text-4xl font-[700]">
-        Set & <br/>Go
+        Plan Your  <br/><span className="flex items-center gap-2"><Image src={Path_icon} height={40} width={40} alt="meal-icon"/>Path</span>
         </h1>
       </div>
       <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

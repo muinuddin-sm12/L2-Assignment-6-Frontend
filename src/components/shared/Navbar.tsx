@@ -32,7 +32,7 @@ const Navbar = () => {
 
   const menuItems = [
     { name: "Plans & Packages", path: "/plans-and-packages" },
-    { name: "Menu", path: "/find-meals" },
+    { name: "Menu", path: "/menu" },
     { name: "Blog", path: "/blog" },
   ];
 
@@ -48,7 +48,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="h-20 px-4 md:px-12 lg:px-20 flex items-center justify-between border-b">
+    <div className="h-20 flex items-center justify-between border-b">
       <Link href="/" className="flex items-center gap-2 font-bold text-2xl">
         <Image src={Logo} height={40} width={40} alt="MealCraft Logo" />
         MealCraft
@@ -65,7 +65,7 @@ const Navbar = () => {
         {user?.email ? (
           <DropdownMenu>
             <DropdownMenuTrigger>
-              <Avatar>
+              <Avatar className="cursor-pointer">
                 <AvatarImage src="https://api.dicebear.com/7.x/bottts/svg?seed=muin" />
                 <AvatarFallback>User</AvatarFallback>
               </Avatar>

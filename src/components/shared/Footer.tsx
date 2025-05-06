@@ -1,4 +1,4 @@
-import logo from "@/assets/Logo.png";
+import logo from "@/assets/Logo(01).png";
 import Image from "next/image";
 import Link from "next/link";
 import { FaPhoneAlt } from "react-icons/fa";

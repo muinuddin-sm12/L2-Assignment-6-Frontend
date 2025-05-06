@@ -10,7 +10,7 @@ const MenuSection = ({ data }: {data: IMeal[] | []}) => {
   const router = useRouter();
 
   const handleCardClick = (id: string) => {
-    router.push(`/find-meals/${id}`);
+    router.push(`/menu/${id}`);
   };
   return (
     <div className="grid min-h-screen grid-cols-1 mx-auto w-full sm:grid-cols-2 md:grid-cols-4 gap-6">

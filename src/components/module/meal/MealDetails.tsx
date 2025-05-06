@@ -3,6 +3,7 @@
 import { IMealDetail } from "@/types";
 import Image from "next/image";
 import React from "react";
+import { TbPoint } from "react-icons/tb";
 
 const MealDetailsPage = ({ data }: { data: IMealDetail }) => {
   // console.log(data);
@@ -19,12 +20,16 @@ const MealDetailsPage = ({ data }: { data: IMealDetail }) => {
             </span>
           ))}
         </div>
-        <div className="w-[300px] ">
+        <div className="md:w-[300px] ">
           <div className="">
-            <h1 className="text-3xl font-[600] mb-4">{data.mealName}</h1>
-            <p className=" leading-4 mb-8">{data?.description}</p>
+            <h1 className="text-3xl font-[600] mb-3">{data.mealName}</h1>
+            <p className=" leading-4 mb-3 text-gray-700">{data?.description}</p>
+            <div className="mb-6 font-[600]">
+              <span className="text-[#F4511E] font-[600]">Pirce:</span> $
+              {data?.price}
+            </div>
           </div>
-          <div className="h-[340px] w-[250px] rounded-[80px]  overflow-hidden">
+          <div className="h-[340px] w-[250px] rounded-[80px] mb-6 overflow-hidden">
             <Image
               className="object-cover h-full w-full"
               height={400}
@@ -32,6 +37,15 @@ const MealDetailsPage = ({ data }: { data: IMealDetail }) => {
               alt="meal photo"
               src={data?.image!}
             />
+          </div>
+
+          <div className="w-full">
+            <h2 className="font-[600] text-xl mb-2">Ingredients</h2>
+            {data?.ingredients.map((ing, index) => (
+              <span key={index} className="inline-flex mr-3 leading-4 items-center ">
+              <TbPoint className="text-[#4CAF50]"/> {ing}
+              </span>
+            ))}
           </div>
         </div>
       </div>

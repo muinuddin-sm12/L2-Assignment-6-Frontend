@@ -5,45 +5,48 @@ import Connect_icon from "@/assets/connections_icon.png";
 import Image from "next/image";
 import GetInTouchImage from "@/assets/get_in_touch.webp";
 import { Input } from "@/components/ui/input";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-} from "@/components/ui/form";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { ImSpinner3 } from "react-icons/im";
 import { toast } from "sonner";
+import { IGetInTouchFrom } from "@/types/getInTouch";
+import { GetInTouchFormSchema } from "./validationSchema/GetInTouchFormValidation";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const GetInTouch = () => {
-  const form = useForm();
+  const form = useForm<IGetInTouchFrom>({
+    resolver: zodResolver(GetInTouchFormSchema),
+  });
   const {
     formState: { isSubmitting },
     reset,
   } = form;
 
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    try{
-        const formData = new FormData();
-        formData.append('name', data.name);
-        formData.append('email', data.email);
-        formData.append('message', "Hello mr.!");
-        formData.append('access_key', process.env.NEXT_PUBLIC_WEB3_FORM_ACCESS_KEY || '')
-        const response = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            body: formData
-          })
-          const res = await response.json();
-          console.log(res)
-          if(res.success){
-            toast.success("Message Sent Successfully")
-            reset();
-          }else{
-            toast.error(res.message)
-          }
-    }catch (error: any) {
-        toast.error(error.message);
+  const onSubmit: SubmitHandler<IGetInTouchFrom> = async (data) => {
+    try {
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("email", data.email);
+      formData.append("message", "Hello mr.!");
+      formData.append(
+        "access_key",
+        process.env.NEXT_PUBLIC_WEB3_FORM_ACCESS_KEY || ""
+      );
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+      const res = await response.json();
+      console.log(res);
+      if (res.success) {
+        toast.success("Message Sent Successfully");
+        reset();
+      } else {
+        toast.error(res.message);
       }
+    } catch (error: any) {
+      toast.error(error.message);
+    }
   };
   return (
     <div className="pt-20 px-6 md:px-12 lg:px-20">
@@ -122,7 +125,7 @@ const GetInTouch = () => {
                 </div>
                 <button
                   type="submit"
-                  className="mt-5 mx-auto cursor-pointer flex justify-center items-center px-4 py-2 rounded-full text-white bg-[#4CAF50] font-[600] "
+                  className="mt-5 mx-auto w-[130px] cursor-pointer flex justify-center items-center px-4 py-2 rounded-full text-white bg-[#4CAF50] font-[600] "
                 >
                   {isSubmitting ? (
                     <ImSpinner3 className="animate-spin text-center text-base flex items-center justify-center" />
@@ -132,7 +135,10 @@ const GetInTouch = () => {
                 </button>
               </form>
             </Form>
-            <p className="leading-4 mt-6 text-gray-100 text-[12px] px-4 md:px-0">By clicking Get Started you agree to receive marketing emails and to Our Terms and Privacy Policy.</p>
+            <p className="leading-4 mt-6 text-gray-100 text-[12px] px-4 md:px-0">
+              By clicking Get Started you agree to receive marketing emails and
+              to Our Terms and Privacy Policy.
+            </p>
           </div>
         </div>
       </div>

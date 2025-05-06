@@ -34,6 +34,7 @@ const CreateMealForm = ({providerData}:{providerData: IProvier}) => {
  
   const {
     formState: { isSubmitting },
+    reset,
   } = form;
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const ingredients = data?.ingredients.split(',').map((item:string) => item.trim()).filter((item: string) => item.length>0);
@@ -46,16 +47,14 @@ const CreateMealForm = ({providerData}:{providerData: IProvier}) => {
       price,
       providerId: providerData?._id,
     }
-    // console.log(fullFormData)
     try {
       const formData = new FormData();
       formData.append("data", JSON.stringify(fullFormData));
       formData.append("image", imageFiles[0]);
       const res = await createMeal(formData);
-      // console.log('res.....', res)
       if (res?.success) {
         toast.success(res?.message);
-        form.reset();
+        reset();
         router.push("/menu");
       } else {
         toast.error(res?.message);

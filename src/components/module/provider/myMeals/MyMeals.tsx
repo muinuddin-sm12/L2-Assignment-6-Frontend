@@ -39,26 +39,28 @@ const MyMeals = ({ data }: MyMealsProps) => {
       header: () => <div>Meal Photo</div>,
       cell: ({ row }) => (
         <div className="flex items-center space-x-3">
+          <div className="h-20 w-32">
           <Image
             src={row?.original?.image || ""}
             alt={row?.original?.mealName || "image"}
-            width={40}
-            height={40}
-            className="w-30 h-20 object-cover rounded-lg"
+            width={100}
+            height={100}
+            className="w-full h-full object-cover bg-center rounded-lg"
           />
+          </div>
           <span className="truncate">{row.original.mealName}</span>
         </div>
       ),
     },
-    {
-      accessorKey: "mealName",
-      header: () => <div>Meal Name</div>,
-      cell: ({ row }) => (
-        <div className="flex items-center space-x-3">
-          <span className="truncate">{row.original.mealName}</span>
-        </div>
-      ),
-    },
+    // {
+    //   accessorKey: "mealName",
+    //   header: () => <div>Meal Name</div>,
+    //   cell: ({ row }) => (
+    //     <div className="flex items-center space-x-3">
+    //       <span className="truncate">{row.original.mealName}</span>
+    //     </div>
+    //   ),
+    // },
     {
       accessorKey: "_id",
       header: () => <div>Meal Id</div>,
@@ -124,7 +126,7 @@ const MyMeals = ({ data }: MyMealsProps) => {
     // },
   ];
   return (
-    <div>
+    <div className="px-5">
       <MTable data={meals} columns={columns} />
     </div>
   );

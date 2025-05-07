@@ -25,28 +25,34 @@ import { Textarea } from "@/components/ui/textarea";
 import { IProvier } from "@/types";
 import { createMeal } from "@/services/Meal";
 
-const CreateMealForm = ({providerData}:{providerData: IProvier}) => {
+const CreateMealForm = ({ providerData }: { providerData: IProvier }) => {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   const [imagePreview, setImagePreview] = useState<string[] | []>([]);
   const router = useRouter();
-  
+
   const form = useForm<FieldValues>();
- 
+
   const {
     formState: { isSubmitting },
     reset,
   } = form;
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    const ingredients = data?.ingredients.split(',').map((item:string) => item.trim()).filter((item: string) => item.length>0);
-    const dietaryTags = data?.dietaryTags.split(',').map((item:string) => item.trim()).filter((item: string) => item.length>0);
-    const price = parseFloat(data?.price)
+    const ingredients = data?.ingredients
+      .split(",")
+      .map((item: string) => item.trim())
+      .filter((item: string) => item.length > 0);
+    const dietaryTags = data?.dietaryTags
+      .split(",")
+      .map((item: string) => item.trim())
+      .filter((item: string) => item.length > 0);
+    const price = parseFloat(data?.price);
     const fullFormData = {
       ...data,
       ingredients,
       dietaryTags,
       price,
       providerId: providerData?._id,
-    }
+    };
     try {
       const formData = new FormData();
       formData.append("data", JSON.stringify(fullFormData));
@@ -64,37 +70,27 @@ const CreateMealForm = ({providerData}:{providerData: IProvier}) => {
     }
   };
   return (
-    <div className="border border-gray-300 rounded-xl flex-grow max-w-md w-full p-5">
+    <div className="flex-grow w-full px-5">
+      <h1 className="text-xl font-semibold text-center mb-10">
+        Create a New Meal{" "}
+      </h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-          <FormField
-            control={form.control}
-            name="mealName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Meal Name</FormLabel>
-                <FormControl>
-                  <Input {...field} value={field.value || ""} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="description"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Description</FormLabel>
-                <FormControl>
-                  <Textarea {...field} value={field.value || ""} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <div className="flex justify-between items-center">
-            <div className="space-y-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 space-y-3 md:space-y-0 md:space-x-4 items-start">
+            <FormField
+              control={form.control}
+              name="mealName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Meal Name</FormLabel>
+                  <FormControl>
+                    <Input {...field} value={field.value || ""} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="grid grid-cols-1 md:grid-cols-2 space-y-3 md:space-y-0 md:space-x-4">
               <FormField
                 control={form.control}
                 name="price"
@@ -126,7 +122,44 @@ const CreateMealForm = ({providerData}:{providerData: IProvier}) => {
                 )}
               />
             </div>
-
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 items-center space-y-3 md:space-y-0 md:space-x-4">
+            <div className="space-y-3">
+              <FormField
+                control={form.control}
+                name="ingredients"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Ingredients</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        value={field.value || ""}
+                        placeholder="separate every ingredients with a comma(' , ')"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="dietaryTags"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>DietaryTags</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        value={field.value || ""}
+                        placeholder="separate every dietary tags with a comma(' , ')"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             {imagePreview?.length > 0 ? (
               <ImagePreviewer
                 setImageFiles={setImageFiles}
@@ -144,42 +177,25 @@ const CreateMealForm = ({providerData}:{providerData: IProvier}) => {
               </div>
             )}
           </div>
+
           <FormField
             control={form.control}
-            name="ingredients"
+            name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Ingredients</FormLabel>
+                <FormLabel>Description</FormLabel>
                 <FormControl>
-                  <Input
-                    {...field}
-                    value={field.value || ""}
-                    placeholder="separate every ingredients with a comma(' , ')"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="dietaryTags"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>DietaryTags</FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    value={field.value || ""}
-                    placeholder="separate every dietary tags with a comma(' , ')"
-                  />
+                  <Textarea {...field} value={field.value || ""} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <Button type="submit" className="mt-5 w-full bg-[#4CAF50] hover:bg-[#4bce4f]">
+          <Button
+            type="submit"
+            className="mt-5 cursor-pointer w-[200px] mx-auto  bg-[#4CAF50] hover:bg-[#4bce4f]"
+          >
             {isSubmitting ? (
               <ImSpinner3 className="animate-spin text-center text-white text-lg flex items-center justify-center" />
             ) : (

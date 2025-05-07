@@ -113,11 +113,11 @@ const ManagaOrders = ({ orders }: TOrderProps) => {
       ),
     },
     {
-      accessorKey: "customizations",
-      header: () => <div>Preference</div>,
+      accessorKey: "paymentStatus",
+      header: () => <div>Payment Status</div>,
       cell: ({ row }) => (
         <div className="flex items-center space-x-3">
-          <span className="truncate">{row.original.mealPlanId}</span>
+          <span className="truncate">{row.original.paymentStatus}</span>
         </div>
       ),
     },
@@ -166,7 +166,7 @@ const ManagaOrders = ({ orders }: TOrderProps) => {
     },
   ];
   return (
-    <div>
+    <div className="p-5">
       <MTable data={orders} columns={columns} />
       <AcceptOrderModal
         isOpen={isConfirmModalOpen}

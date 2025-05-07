@@ -1,8 +1,11 @@
+import DashboardPage from '@/components/module/provider/dashboard/DashboardPage'
+import { getALLProvider } from '@/services/Provider';
 import React from 'react'
 
-const ProviderDashboardPage = () => {
+const ProviderDashboardPage = async() => {
+  const providers = await getALLProvider()
   return (
-    <div>Welcome to Provider Dashboard</div>
+<div><DashboardPage providersData={providers.data}/></div>    
   )
 }
 

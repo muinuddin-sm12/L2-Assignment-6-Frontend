@@ -23,7 +23,7 @@ export default async function DashboardLayout({
             <SidebarTrigger className="-ml-1" />
           </div>
         </header>
-        <div className="min-h-screen max-w-[1440px] mx-auto">{children}</div>
+        <div className="min-h-[calc(100vh-64px)]">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   );

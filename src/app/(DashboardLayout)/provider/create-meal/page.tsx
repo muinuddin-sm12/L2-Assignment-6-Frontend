@@ -9,7 +9,7 @@ const CreateMealPage = async() => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const currentProvider = providers.data.find((p: any) => p?.userId?._id === user?._id) 
   return (
-    <div className='flex justify-center'>
+    <div className=''>
         <CreateMealForm providerData={currentProvider}/>
     </div>
   )

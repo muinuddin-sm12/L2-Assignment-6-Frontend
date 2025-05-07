@@ -37,7 +37,7 @@ const GetInTouch = () => {
         body: formData,
       });
       const res = await response.json();
-      console.log(res);
+    //   console.log(res);
       if (res.success) {
         toast.success("Message Sent Successfully");
         reset();

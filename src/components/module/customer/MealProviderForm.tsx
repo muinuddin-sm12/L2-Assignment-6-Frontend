@@ -68,7 +68,10 @@ const MealProviderForm = () => {
     }
   };
   return (
-    <div className="border border-gray-300 rounded-xl flex-grow max-w-lg w-full p-5">
+    <div className="w-full px-5 pb-5">
+      <h1 className="text-xl font-medium text-center mb-10">
+        Become a Provider{" "}
+      </h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
           <FormField
@@ -97,6 +100,8 @@ const MealProviderForm = () => {
               </FormItem>
             )}
           />
+          <div className="grid grid-cols-1 md:grid-cols-3 md:space-x-4">
+          <div className="col-span-2">
           <FormField
             control={form.control}
             name="cuisineSpecialties"
@@ -114,6 +119,7 @@ const MealProviderForm = () => {
               </FormItem>
             )}
           />
+          </div>
           <FormField
             control={form.control}
             name="experience"
@@ -131,6 +137,7 @@ const MealProviderForm = () => {
               </FormItem>
             )}
           />
+          </div>
           <FormField
             control={form.control}
             name="address"
@@ -157,12 +164,12 @@ const MealProviderForm = () => {
               <MImageUploader
                 setImageFiles={setImageFiles}
                 setImagePreview={setImagePreview}
-                label="Upload Image"
+                label="Upload Logo"
               />
             </div>
           )}
 
-          <Button type="submit" className="mt-5 w-full bg-[#4CAF50] hover:bg-[#4bce4f]">
+          <Button type="submit" className="mt-5 w-[200px] cursor-pointer bg-[#4CAF50] hover:bg-[#4bce4f]">
             {isSubmitting ? (
               <ImSpinner3 className="animate-spin text-center text-lg flex items-center justify-center" />
             ) : (

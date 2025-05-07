@@ -71,7 +71,7 @@ const CreateMealForm = ({ providerData }: { providerData: IProvier }) => {
   };
   return (
     <div className="flex-grow w-full px-5">
-      <h1 className="text-xl font-semibold text-center mb-10">
+      <h1 className="text-xl font-medium text-center mb-10">
         Create a New Meal{" "}
       </h1>
       <Form {...form}>

@@ -39,7 +39,7 @@ const ManageOrders = ({orders}: TOrderProps) => {
         },
       ];
   return (
-    <div>
+    <div className='px-5 pb-5'>
         <MTable data={orders} columns={columns} />
     </div>
   )

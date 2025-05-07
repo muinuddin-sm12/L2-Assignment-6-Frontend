@@ -69,7 +69,7 @@ const CreateMealPlanForm = ({ providerData }: { providerData: IProvier }) => {
   };
   return (
     <div className="flex-grow  w-full px-5 pb-5">
-      <h1 className='text-xl font-semibold text-center mb-10'>Create Your Meal Plan </h1>
+      <h1 className='text-xl font-medium text-center mb-10'>Create Your Meal Plan </h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
           <div className="grid grid-cols-1 md:grid-cols-3 md:space-x-4 space-y-3 md:space-y-0">

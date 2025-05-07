@@ -166,7 +166,7 @@ const ManagaOrders = ({ orders }: TOrderProps) => {
     },
   ];
   return (
-    <div className="p-5">
+    <div className="px-5 pb-5">
       <MTable data={orders} columns={columns} />
       <AcceptOrderModal
         isOpen={isConfirmModalOpen}

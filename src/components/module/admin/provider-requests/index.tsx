@@ -103,6 +103,7 @@ const ProviderRequests = ({ providers }: TProviderProps) => {
       header: () => <div>Action</div>,
       cell: ({ row }) => (
         <button
+        className="cursor-pointer hover:text-[#4CAF50] transition-colors duration-500"
           title="make provider"
           //   onClick={() => handleBlock(row.original)}
         >
@@ -112,7 +113,7 @@ const ProviderRequests = ({ providers }: TProviderProps) => {
     },
   ];
   return (
-    <div>
+    <div className="px-5 pb-5">
       <MTable data={providers} columns={columns} />
       <RequestConfirmationModal
         isOpen={isModalOpen}

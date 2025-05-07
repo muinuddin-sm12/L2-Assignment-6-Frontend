@@ -116,7 +116,7 @@ const ManageUsers = ({ users }: TUserProps) => {
     },
   ];
   return (
-    <div>
+    <div className="px-5 pb-5">
       <MTable data={users} columns={columns} />
       <BlockingConfirmationModal
         name={selectedName}

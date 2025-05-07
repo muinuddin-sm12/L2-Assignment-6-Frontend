@@ -68,10 +68,12 @@ const CreateMealPlanForm = ({ providerData }: { providerData: IProvier }) => {
     }
   };
   return (
-    <div className=" flex-grow max-w-lg w-full p-5">
-      <h1 className='text-lg font-semibold text-center mb-5'>Create Your Meal Plan </h1>
+    <div className="flex-grow  w-full px-5 pb-5">
+      <h1 className='text-xl font-semibold text-center mb-10'>Create Your Meal Plan </h1>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 md:space-x-4 space-y-3 md:space-y-0">
+          <div className="col-span-2">
           <FormField
             control={form.control}
             name="title"
@@ -85,19 +87,7 @@ const CreateMealPlanForm = ({ providerData }: { providerData: IProvier }) => {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="description"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Description</FormLabel>
-                <FormControl>
-                  <Textarea {...field} value={field.value || ""} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          </div>
           <FormField
             control={form.control}
             name="pricePerMeal"
@@ -111,6 +101,21 @@ const CreateMealPlanForm = ({ providerData }: { providerData: IProvier }) => {
               </FormItem>
             )}
           />
+          </div>
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Description</FormLabel>
+                <FormControl>
+                  <Textarea {...field} value={field.value || ""} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          
           <FormField
             control={form.control}
             name="mealPlanType"
@@ -197,7 +202,7 @@ const CreateMealPlanForm = ({ providerData }: { providerData: IProvier }) => {
 
           <Button
             type="submit"
-            className="mt-5 w-full  bg-[#4CAF50] hover:bg-[#4bce4f]"
+            className="mt-5 w-[200px] cursor-pointer  bg-[#4CAF50] hover:bg-[#4bce4f]"
           >
             {isSubmitting ? (
               <ImSpinner3 className="animate-spin text-center text-white text-lg flex items-center justify-center" />

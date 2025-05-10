@@ -48,7 +48,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="h-20 flex items-center justify-between border-b">
+    <div className="h-20 flex items-center justify-between">
       <Link href="/" className="flex items-center gap-2 font-bold text-2xl">
         <Image src={Logo} height={40} width={40} alt="MealCraft Logo" />
         MealCraft

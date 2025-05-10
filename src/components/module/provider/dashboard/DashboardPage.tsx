@@ -1,7 +1,6 @@
 "use client";
 import { useUser } from "@/context/UserContext";
 import { IProvier } from "@/types";
-import Image from "next/image";
 import React from "react";
 
 interface DashboardPageProps {

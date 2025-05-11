@@ -19,6 +19,7 @@ export interface IOrder {
     orderStatus: string;
     paymentStatus: string;
     updatedAt: string;
+    createdAt: string;
     __v: number;
     transaction: ITransaction;
 }

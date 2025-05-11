@@ -63,14 +63,14 @@ const Navbar = () => {
         ))}
 
         {user?.email ? (
-          <DropdownMenu>
+            <DropdownMenu>
             <DropdownMenuTrigger>
               <Avatar className="cursor-pointer">
                 <AvatarImage src="https://api.dicebear.com/7.x/bottts/svg?seed=muin" />
                 <AvatarFallback>User</AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent className="z-[999] mt-2">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Profile</DropdownMenuItem>
@@ -89,7 +89,7 @@ const Navbar = () => {
           </DropdownMenu>
         ) : (
           <Link href="/login">
-            <Button className="rounded-full" variant="outline">
+            <Button className="rounded-full cursor-pointer" variant="outline">
               Login
             </Button>
           </Link>

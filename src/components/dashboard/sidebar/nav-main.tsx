@@ -19,6 +19,8 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 export function NavMain({
   items,
@@ -37,6 +39,7 @@ export function NavMain({
 
  
 }) {
+  const pathname = usePathname();
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Menu</SidebarGroupLabel>
@@ -45,7 +48,7 @@ export function NavMain({
           <Collapsible key={item.title} asChild defaultOpen={item.isActive}>
             <SidebarMenuItem>
               <SidebarMenuButton  asChild tooltip={item.title}>
-                <Link href={item.url}>
+                <Link href={item.url} className={cn(pathname === item.url? 'bg-muted text-primary': 'text-muted-foreground')}>
                   <item.icon />
                   <span>{item.title}</span>
                 </Link>

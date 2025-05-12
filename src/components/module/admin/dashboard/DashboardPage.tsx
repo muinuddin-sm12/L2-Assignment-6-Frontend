@@ -43,24 +43,11 @@ const DashboardPage = ({ orders, users, providers }: TDashboardProps) => {
     <div className="px-5 h-full w-full  py-10">
       <div className="grid grid-cols-1 md:grid-cols-3 h-[400px] md:gap-6">
         <div className="col-span-2 bg-gray-100 rounded-2xl border">
-          {/* <div className="h-full w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart
-                data={chartData}
-                className="p-5"
-                margin={{ top: 15, right: 0, bottom: 15, left: 0 }}
-              >
-                <Tooltip />
-                <XAxis dataKey="label" />
-                <YAxis />
-                <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                <Legend />
-                <Line type="monotone" dataKey="sales" stroke="#FB8833" />
-              </LineChart>
-            </ResponsiveContainer>
-          </div> */}
           <div className="section col-md-6 h-full w-full p-5">
-            <h3 className="section-title text-gray-500">Total Sales: <span className="text-lg font-[600]">${totalOrder}</span></h3>
+            <h3 className="section-title text-gray-500">
+              Total Sales:{" "}
+              <span className="text-lg font-[600]">${totalOrder}</span>
+            </h3>
             <div className="section-content mt-8">
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart

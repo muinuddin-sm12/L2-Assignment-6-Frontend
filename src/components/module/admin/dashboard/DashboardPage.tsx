@@ -67,12 +67,12 @@ const DashboardPage = ({ orders, users, providers }: TDashboardProps) => {
           </div>
         </div>
         <div className="grid grid-cols-1 gap-6">
-          <div className="bg-fuchsia-100 flex flex-col py-5 items-center justify-center rounded-2xl border mt-6 md:mt-0">
+          <div className="bg-green-50 flex flex-col py-5 items-center justify-center rounded-2xl border mt-6 md:mt-0">
             <Image src={GroupIcon} height={50} width={50} alt="group icon" />
             <h2 className="text-xl font-[600]">Total Users</h2>
             <p className="text-4xl font-[800]">{users.length} +</p>
           </div>
-          <div className="bg-violet-100 rounded-2xl flex py-5 flex-col items-center justify-center border">
+          <div className="bg-violet-50 rounded-2xl flex py-5 flex-col items-center justify-center border">
             <Image src={ChefIcon} height={50} width={50} alt="group icon" />
             <h2 className="text-xl font-[600]">Total Providers</h2>
             <p className="text-4xl font-[800]">{providers.length} +</p>

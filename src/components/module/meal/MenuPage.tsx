@@ -4,9 +4,10 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { IMeal } from "@/types/meal";
+import { motion } from "framer-motion";
 
-const MenuSection = ({ data }: {data: IMeal[] | []}) => {
-// console.log(data)
+const MenuSection = ({ data }: { data: IMeal[] | [] }) => {
+  // console.log(data)
   const router = useRouter();
 
   const handleCardClick = (id: string) => {
@@ -15,7 +16,11 @@ const MenuSection = ({ data }: {data: IMeal[] | []}) => {
   return (
     <div className="grid min-h-screen grid-cols-1 mx-auto w-full sm:grid-cols-2 md:grid-cols-4 gap-6">
       {data.map((meal, index) => (
-        <div
+        <motion.div
+          initial={{ y: 60, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ delay: index * 0.1, duration: 0.5, type: "keyframes" }}
           onClick={() => handleCardClick(meal?._id)}
           key={index}
           className="relative h-[380px] group overflow-hidden rounded-xl break-inside-avoid cursor-pointer shadow-md"
@@ -35,7 +40,7 @@ const MenuSection = ({ data }: {data: IMeal[] | []}) => {
               <h3 className="text-white font-semibold">{meal?.mealName}</h3>
             </div>
           </div>
-        </div>
+        </motion.div>
       ))}
     </div>
   );

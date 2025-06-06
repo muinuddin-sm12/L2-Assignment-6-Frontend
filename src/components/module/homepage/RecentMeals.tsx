@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Meal_icon from "../../../assets/meal_icon.png";
 import Link from "next/link";
+import {motion} from "framer-motion";
 import RightArrow from "@/assets/right-arrow.png";
 
 const RecentMeals = ({ data }: { data: IMeal[] | [] }) => {
@@ -50,7 +51,11 @@ const RecentMeals = ({ data }: { data: IMeal[] | [] }) => {
 
       <div className="grid grid-cols-1 mx-auto w-full sm:grid-cols-2 md:grid-cols-4 gap-6">
         {recentMealData?.map((meal, index) => (
-          <div
+          <motion.div
+          initial= {{y:60,opacity:0 }}
+          whileInView={{y: 0, opacity: 1}}
+          viewport={{once: true, amount: 0.2}}
+          transition={{ delay: index* 0.1, duration: 0.5, type:'keyframes'}}
             onClick={() => handleCardClick(meal?._id)}
             key={index}
             className="relative h-[380px] group overflow-hidden rounded-xl break-inside-avoid cursor-pointer shadow-md"
@@ -72,7 +77,7 @@ const RecentMeals = ({ data }: { data: IMeal[] | [] }) => {
                 </h3>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

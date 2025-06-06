@@ -7,7 +7,12 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import { useUser } from "@/context/UserContext";
 import { logOut } from "@/services/Auth";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useMotionValueEvent,
+} from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import {
   DropdownMenu,
@@ -25,11 +30,13 @@ const Navbar = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { user, setIsLoading } = useUser();
-  
+
+  const { scrollY } = useScroll();
+  const [hidden, setHidden] = useState(false);
+  const [showSides, setShowSides] = useState(true);
+
   // console.log(user);
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const menuItems = [
     { name: "Plans & Packages", path: "/plans-and-packages" },
     { name: "Menu", path: "/menu" },
@@ -47,15 +54,32 @@ const Navbar = () => {
     router.push("/");
   };
 
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious();
+    if (latest > previous! && latest > 150) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+    setShowSides(latest <= 0);
+  });
+
   return (
-    <div className="h-20 flex items-center justify-between">
+    <motion.div  variants={{
+          visible: { y: 0, opacity: 1 },
+          hidden: { y: "-110%", opacity: 0 },
+        }}
+        animate={hidden ? "hidden" : "visible"}
+        transition={{ duration: 0.8, ease: "easeInOut" }} className="h-20 px-6 md:px-12 lg:px-20  flex w-full bg-white items-center justify-between">
       <Link href="/" className="flex items-center gap-2 font-bold text-2xl">
         <Image src={Logo} height={40} width={40} alt="MealCraft Logo" />
         MealCraft
       </Link>
-
       {/* Desktop Menu */}
-      <div className="hidden md:flex items-center gap-8">
+      <div
+       
+        className="hidden md:flex items-center gap-8"
+      >
         {menuItems.map((menu, index) => (
           <Link key={index} href={menu.path} className="hover:text-[#F4511E]">
             {menu.name}
@@ -63,7 +87,7 @@ const Navbar = () => {
         ))}
 
         {user?.email ? (
-            <DropdownMenu>
+          <DropdownMenu>
             <DropdownMenuTrigger>
               <Avatar className="cursor-pointer">
                 <AvatarImage src="https://api.dicebear.com/7.x/bottts/svg?seed=muin" />
@@ -153,7 +177,7 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };
 

@@ -14,7 +14,7 @@ const GoalSection = () => {
         </h1>
       </div>
       <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div className=" relative h-[500px] rounded-3xl overflow-hidden bg-cover bg-center bg-gray-50 flex items-center justify-center text-3xl font-[600]">
+        <div className=" relative h-[500px] rounded-3xl overflow-hidden bg-cover bg-center bg-gray-50 flex items-center justify-center text-3xl font-[600] hover:scale-105 transition-all duration-500">
           <Image
             className="w-full h-full object-cover "
             src={g_1}
@@ -26,7 +26,7 @@ const GoalSection = () => {
             Gain muscle
           </div>
         </div>
-        <div className="relative h-[500px] rounded-3xl overflow-hidden bg-cover bg-center bg-gray-50 flex items-center justify-center text-3xl font-[600]">
+        <div className="relative h-[500px] rounded-3xl overflow-hidden bg-cover bg-center bg-gray-50 flex items-center justify-center text-3xl font-[600]  hover:scale-105 transition-all duration-500">
           <Image
             className="w-full h-full object-cover "
             src={g_2}
@@ -38,7 +38,7 @@ const GoalSection = () => {
             Lose weight
           </div>
         </div>
-        <div className="relative h-[500px] rounded-3xl overflow-hidden bg-cover bg-center bg-gray-50 flex items-center justify-center text-3xl font-[600]">
+        <div className="relative h-[500px] rounded-3xl overflow-hidden bg-cover bg-center bg-gray-50 flex items-center justify-center text-3xl font-[600]  hover:scale-105 transition-all duration-500">
           <Image
             className="w-full h-full object-cover "
             src={g_3}

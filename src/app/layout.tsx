@@ -3,6 +3,7 @@ import { Lato } from "next/font/google";
 import "./globals.css";
 import Providers from "@/providers/Providers";
 import { Toaster } from "sonner";
+import ScrollRestoration from "@/components/shared/ScrollRestoration";
 
 const lato = Lato({
   weight: ['100', '300' , '400', '700', '900'],
@@ -25,6 +26,7 @@ export default function RootLayout({
       <body
         className={`${lato.className} antialiased`}
       >
+        <ScrollRestoration/>
         <Providers>
           <Toaster richColors position="top-center" />
           {children}

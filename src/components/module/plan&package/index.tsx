@@ -8,6 +8,7 @@ import lowCarbIcon from "../../../assets/icons/low-carbHealthyUI.webp";
 import ketoIcon from "../../../assets/icons/ketoHealthyUI.png";
 import vegetarianIcon from "../../../assets/icons/vegetarianHealthyUI.webp";
 import Image from "next/image";
+import {motion} from "framer-motion";
 import { useRouter } from "next/navigation";
 import { getALlMealsPlans } from "@/services/mealPlan";
 
@@ -85,7 +86,11 @@ const PlanAndPackagePage = ({ data }: { data: IMealPlan[] }) => {
       <div className="flex flex-col md:flex-row gap-20 items-start">
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
           {mealPlanType.map((plan, index) => (
-            <div
+            <motion.div
+            initial={{x:-50, opacity:0}}
+            whileInView={{x:0, opacity:1}}
+            viewport={{once: true, amount: 0.2}}
+            transition={{delay: index*0.1, duration: 0.5, type:'keyframes'}}
               key={index}
               onClick={() => handleSelectedType(plan?.value)}
               className={`border select-none cursor-pointer flex items-center gap-3 hover:bg-gray-100 transition duration-500 rounded-2xl p-4 ${selectedType === plan?.value ? 'border-green-300 bg-green-100' : ''}`}
@@ -97,7 +102,7 @@ const PlanAndPackagePage = ({ data }: { data: IMealPlan[] }) => {
               <div className="">
                 <Image src={plan.icon} alt="icons" height={100} width={100} />
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
         <div className="flex-1 max-h-screen overflow-y-auto">
@@ -108,7 +113,11 @@ const PlanAndPackagePage = ({ data }: { data: IMealPlan[] }) => {
           </div>
           {initiateData.length>0 ? (<div className="flex flex-col gap-4 overflow-y-auto">
             {initiateData?.map((plan, index) => (
-              <div
+              <motion.div
+              initial={{y:50, opacity: 0}}
+              whileInView={{y:0, opacity:1}}
+              viewport={{once: true, amount:0.2}}
+              transition={{delay:index*0.1, duration: 0.5, type: 'keyframes'}}
                 key={plan?._id}
                 onClick={() => handleOnclick(plan?._id)}
                 className="relative border select-none cursor-pointer flex justify-between items-center gap-3 hover:bg-gray-100 transition duration-500 rounded-2xl px-4 pt-10 pb-4"
@@ -142,7 +151,7 @@ const PlanAndPackagePage = ({ data }: { data: IMealPlan[] }) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>): (<div>
             <span className="font-light text-center text-sm ">No result</span>

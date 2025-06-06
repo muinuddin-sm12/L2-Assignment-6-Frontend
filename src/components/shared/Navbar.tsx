@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import React, { useState } from "react";
 import Logo from "@/assets/Logo.png";
@@ -33,7 +34,7 @@ const Navbar = () => {
 
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
-  const [showSides, setShowSides] = useState(true);
+  const [_showSides, setShowSides] = useState(true);
 
   // console.log(user);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
